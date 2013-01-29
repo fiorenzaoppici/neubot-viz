@@ -1,22 +1,5 @@
 [
     {
-        "connect_time": 0.013959884643554688, 
-        "download_speed": 8229721.341876327, 
-        "internal_address": "130.192.91.234", 
-        "latency": 0.01662898063659668, 
-        "neubot_version": "0.004015006", 
-        "platform": "linux2", 
-        "privacy_can_collect": 1, 
-        "privacy_can_publish": 1, 
-        "privacy_informed": 1, 
-        "real_address": "130.192.91.234", 
-        "remote_address": "213.200.99.224", 
-        "test_version": 1, 
-        "timestamp": 1359483082, 
-        "upload_speed": 11174270.178406209, 
-        "uuid": "7eba0f74-bace-41b4-8eb0-ba074f46a6fb"
-    }, 
-    {
         "connect_time": 0.016128063201904297, 
         "download_speed": 6498723.1631434625, 
         "internal_address": "130.192.91.234", 
