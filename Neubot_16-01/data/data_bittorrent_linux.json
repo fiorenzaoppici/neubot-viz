@@ -1,0 +1,34 @@
+[
+    {
+        "connect_time": 0.0015070438385009766, 
+        "download_speed": 10499933.089834122, 
+        "internal_address": "130.192.91.234", 
+        "neubot_version": "0.004015006", 
+        "platform": "linux2", 
+        "privacy_can_collect": 1, 
+        "privacy_can_publish": 1, 
+        "privacy_informed": 1, 
+        "real_address": "130.192.91.234", 
+        "remote_address": "194.116.85.237", 
+        "test_version": 1, 
+        "timestamp": 1358349797, 
+        "upload_speed": 8410649.708696652, 
+        "uuid": "7eba0f74-bace-41b4-8eb0-ba074f46a6fb"
+    }, 
+    {
+        "connect_time": 0.01935601234436035, 
+        "download_speed": 3559726.79078902, 
+        "internal_address": "130.192.91.234", 
+        "neubot_version": "0.004015006", 
+        "platform": "linux2", 
+        "privacy_can_collect": 1, 
+        "privacy_can_publish": 1, 
+        "privacy_informed": 1, 
+        "real_address": "130.192.91.234", 
+        "remote_address": "213.200.99.224", 
+        "test_version": 1, 
+        "timestamp": 1358345148, 
+        "upload_speed": 10961311.357429719, 
+        "uuid": "7eba0f74-bace-41b4-8eb0-ba074f46a6fb"
+    }
+]

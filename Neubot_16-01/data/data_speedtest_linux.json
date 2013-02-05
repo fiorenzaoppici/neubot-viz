@@ -1,0 +1,53 @@
+[
+    {
+        "connect_time": 0.01659393310546875, 
+        "download_speed": 6299759.788716434, 
+        "internal_address": "130.192.91.234", 
+        "latency": 0.019785989414561878, 
+        "neubot_version": "0.004015006", 
+        "platform": "linux2", 
+        "privacy_can_collect": 1, 
+        "privacy_can_publish": 1, 
+        "privacy_informed": 1, 
+        "real_address": "130.192.91.234", 
+        "remote_address": "213.200.99.237", 
+        "test_version": 1, 
+        "timestamp": 1358348244, 
+        "upload_speed": 10334262.461866075, 
+        "uuid": "7eba0f74-bace-41b4-8eb0-ba074f46a6fb"
+    }, 
+    {
+        "connect_time": 0.012176036834716797, 
+        "download_speed": 11332801.361211918, 
+        "internal_address": "130.192.91.234", 
+        "latency": 0.0052034204656427555, 
+        "neubot_version": "0.004015006", 
+        "platform": "linux2", 
+        "privacy_can_collect": 1, 
+        "privacy_can_publish": 1, 
+        "privacy_informed": 1, 
+        "real_address": "130.192.91.234", 
+        "remote_address": "194.116.85.237", 
+        "test_version": 1, 
+        "timestamp": 1358343604, 
+        "upload_speed": 9954132.429812318, 
+        "uuid": "7eba0f74-bace-41b4-8eb0-ba074f46a6fb"
+    }, 
+    {
+        "connect_time": 0.01595306396484375, 
+        "download_speed": 4222451.509535326, 
+        "internal_address": "130.192.91.234", 
+        "latency": 0.020702232014049183, 
+        "neubot_version": "0.004015006", 
+        "platform": "linux2", 
+        "privacy_can_collect": 1, 
+        "privacy_can_publish": 1, 
+        "privacy_informed": 1, 
+        "real_address": "130.192.91.234", 
+        "remote_address": "213.200.99.224", 
+        "test_version": 1, 
+        "timestamp": 1358343370, 
+        "upload_speed": 11071469.936620977, 
+        "uuid": "7eba0f74-bace-41b4-8eb0-ba074f46a6fb"
+    }
+]

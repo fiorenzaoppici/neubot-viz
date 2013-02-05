@@ -1,0 +1,78 @@
+body {
+	background: #86A7AD;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+h1 {
+	color: white;
+	display: block;
+	text-align: center;
+}
+
+h3 {
+	color: #0F636E;
+	padding: 20px;
+	display:inline-block;
+}
+
+div {
+	display : block;
+	margin-left : auto;
+	margin-right : auto;
+	width: 900px;
+}
+
+.wbackground {
+	border : 1px solid #0F636E;
+	-moz-border-top-radius : 20px;
+	-webkit-border-top-radius : 20px;
+	border-radius : 10px;
+	background-color:rgba(255,255,255,0.5)
+}
+
+#grapharea {
+	height : 700px;
+}
+
+#logo {
+	display: inline-block;
+	width: 64px;
+	height: 64px;
+	background-image: url('http://www.neubot.org/neubotfiles/neubot_icon.png');
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+ path{
+  fill: none;
+  stroke-width: 1.5px;
+}
+
+.upload{
+	r:5;
+	fill:red;
+	stroke:orange;	
+	stroke-width:3px;
+}
+
+.download{
+	r:5;
+	fill:blue;
+	stroke:steelblue;	
+	stroke-width:3px;
+}
+
+
+path.upload{ fill:none;}
+path.download{fill:none;}
+
+text {
+    font-family: Arial;
+    font-size: 9pt;
+}
+

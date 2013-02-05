@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html class="devsite wf-opensans-n4-active wf-active" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script async="" src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/plusone.js" async="" type="text/javascript"></script>
+    <meta charset="utf-8">
+    <script src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/script_head.js"></script>
+    <link rel="stylesheet" type="text/css" href="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/screen.css">
+    <link rel="shortcut icon" href="https://developers.google.com/_static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="https://developers.google.com/_static/images/apple-touch-icon.png">
+    <link href="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/css_002.css" rel="stylesheet" type="text/css">
+    
+    <script src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/jquery.js"></script>
+    <script id="jqueryui" src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/jquery-ui.js"></script>
+    <script src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/jsapi"></script>
+
+    <script type="text/javascript" src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/api.js"></script>
+    <script type="text/javascript" src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/a_002"></script>
+    <!--[if lt IE 9]>
+    <script src="/_static/js/html5shim/html5.js"></script>
+    <![endif]-->
+
+    
+  <script type="text/javascript">
+    var contentTimer = new window.jstiming.Timer();
+
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'en';
+  </script>
+  
+  <title>Jobs - Google BigQuery — Google Developers</title>
+  
+  
+  
+    
+    
+    
+  
+
+
+    
+    
+
+  <style>.a-b-c{position:relative;display:-moz-inline-box;display:inline-block}* html .a-b-c,*:first-child+html .a-b-c{display:inline}.a-d-e{margin:2px;border:0;padding:0;font-family:Arial,sans-serif;color:#000;background:#ddd url(//ssl.gstatic.com/editor/button-bg.png) repeat-x top left;text-decoration:none;list-style:none;vertical-align:middle;cursor:default;outline:none}.a-d-e-f-g,.a-d-e-h-g{border-style:solid;border-color:#aaa;vertical-align:top}.a-d-e-f-g{margin:0;border-width:1px 0;padding:0}.a-d-e-h-g{-moz-box-orient:vertical;margin:0 -1px;border-width:0 1px;padding:3px 4px;white-space:nowrap}* html .a-d-e-h-g{left:-1px}* html .a-d-e-i .a-d-e-f-g{left:-1px}* html .a-d-e-i .a-d-e-h-g{right:auto}*:first-child+html .a-d-e-h-g{left:-1px}*:first-child+html .a-d-e-i .a-d-e-h-g{left:1px}::root .a-d-e,::root .a-d-e-f-g{line-height:0}::root .a-d-e-h-g{line-height:normal}.a-d-e-j{background-image:none!important;opacity:.3;-moz-opacity:.3;filter:alpha(opacity=30)}.a-d-e-j .a-d-e-f-g,.a-d-e-j .a-d-e-h-g{color:#333!important;border-color:#999!important}* html .a-d-e-j,*:first-child+html .a-d-e-j{margin:2px 1px!important;padding:0 1px!important}.a-d-e-k .a-d-e-f-g,.a-d-e-k .a-d-e-h-g{border-color:#9cf #69e #69e #7af!important}.a-d-e-l,.a-d-e-m{background-color:#bbb;background-position:bottom left}.a-d-e-n .a-d-e-f-g,.a-d-e-n .a-d-e-h-g{border-color:orange}.a-d-e-o-p,.a-d-e-o-p .a-d-e-f-g,.a-d-e-o-p .a-d-e-h-g{margin-right:0}.a-d-e-o-q,.a-d-e-o-q .a-d-e-f-g{margin-left:0}.a-d-e-o-q .a-d-e-h-g{margin-left:0;border-left:1px solid #fff}.a-d-e-o-q.a-d-e-m .a-d-e-h-g{border-left:1px solid #ddd}* html .a-d-e-o-q .a-d-e-h-g,*:first-child+html .a-d-e-o-q .a-d-e-h-g{left:0}.a-r-e{position:relative;margin:2px;border:1px solid #000;padding:2px 6px;font:normal 13px "Trebuchet MS",Tahoma,Arial,sans-serif;color:#fff;background-color:#8c2425;cursor:pointer;outline:none}.a-r-e-j{border-color:#888;color:#888;background-color:#ccc;cursor:default}.a-r-e-k{border-color:#8c2425;color:#8c2425;background-color:#eaa4a5}.a-r-e-l,.a-r-e-s,.a-r-e-m{border-color:#5b4169;color:#5b4169;background-color:#d1a8ea}.a-r-e-n{border-color:#5b4169}.a-r-e-o-p{margin-right:0}.a-r-e-o-q{margin-left:0;border-left:none}.a-e{color:#036;border-color:#036;background-color:#69c}.a-e-j{border-color:#333;color:#333;background-color:#999}.a-e-k{color:#369;border-color:#369;background-color:#9cf}.a-e-l{color:#69c;border-color:#69c}</style><link href="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/css.css" rel="stylesheet"><link type="text/css" rel="stylesheet" href="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/table.css"></head>
+  <body class="two-column docs">
+    
+    <div id="sandbar">
+
+
+
+
+<header id="gc-googlebar">
+
+  <a id="gc-logo" href="https://developers.google.com/">
+    <img src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/developers-logo.png" alt="Google">
+  </a>
+
+  <div class="gc-social">
+    
+    <span class="signed-in">
+      <div>
+        <a class="email" href="https://plus.google.com/me">italian.devotchka@gmail.com</a>
+        <a href="https://www.google.com/accounts/Logout?continue=https://developers.google.com/bigquery/docs/reference/v2/jobs&amp;service=ahsid">Sign out</a>
+      </div>
+      <img src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/photo.jpg">
+    </span>
+    
+  </div>
+
+  <form class="gc-search" action="/search/results" method="GET">
+    <div style="width: 392px;" class="searchbox">
+      
+      
+        <span class="button button-blue mini">Google BigQuery<pre>  X</pre></span>
+      
+      <input style="width: 263px;" name="q" class="q" id="q" placeholder="Search" autocomplete="off" type="text">
+    </div>
+    <button style="top: 0px; left: 411px;" class="button button-blue">
+      <img src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/search.png" alt="Search">
+    </button>
+    
+      <input name="p" id="search_project" value="/bigquery" type="hidden">
+    
+  </form>
+
+</header>
+
+
+
+</div>
+    
+
+    
+    
+
+    <div id="gc-wrapper" itemscope="" itemtype="http://schema.org/Article">
+      
+      <input id="gc-analytics" value="UA-24532603-1" type="hidden">
+      
+
+      
+
+      <div id="gc-topnav">
+        <div>
+          <ul>
+            
+              
+            
+            <li class=""><a href="https://developers.google.com/">Home</a></li>
+            
+            <li class="active"><a href="https://developers.google.com/products/">Products</a></li>
+            
+            <li class=""><a href="https://developers.google.com/events/">Conferences</a></li>
+            
+            <li class=""><a href="https://developers.google.com/showcase/">Showcase</a></li>
+            
+            <li class=""><a href="https://developers.google.com/live/">Live</a></li>
+            
+            <li class=""><a href="https://developers.google.com/groups/">Groups</a></li>
+            
+              
+            
+          </ul>
+        </div>
+      </div>
+      
+      
+
+      
+      
+      
+        <div id="gc-appbar">
+          
+          
+<h1>
+
+  <a href="https://developers.google.com/bigquery/">Google BigQuery</a>
+  <div class="plusone-container">
+    <div id="___plusone_0" style="height: 20px; width: 90px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline;"><iframe title="+1" data-gapiattached="true" allowtransparency="true" src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/fastbutton.html" name="I0_1358172486821" id="I0_1358172486821" vspace="0" tabindex="0" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+  </div>
+
+
+<div style="float:right;">
+  
+  <a href="" class="google-feedback" data-p="81912" data-b="docs" data-context="">Feedback on this document</a>
+</div>
+
+
+
+
+
+</h1>
+
+
+          
+        </div>
+      
+      
+
+      
+        
+      <div id="gc-main">
+        
+        
+  
+  
+      
+      
+      <div id="gc-sidebar">
+        
+
+  
+
+
+
+  <nav class="gc-toc"><ul><li class=""><a class="tlw-control tlw-collapsed">▸</a><a class="tlw-title" href="https://developers.google.com/bigquery/" data-title="Introduction"><span>Introduction</span></a><ul style="display: none;"><li class=""><a href="https://developers.google.com/bigquery/docs/overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/pricing" data-title="Pricing"><span>Pricing</span></a></li></ul></li><li class=""><a class="tlw-control tlw-collapsed">▸</a><span class="tlw-title tlw-control-title" data-title="Getting Started">Getting Started</span><ul style="display: none;"><li class=""><a href="https://developers.google.com/bigquery/docs/getting-started" data-title="Sign Up for BigQuery"><span>Sign Up for BigQuery</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/hello_bigquery_gui" data-title="BigQuery Browser Tool Quick Start"><span>BigQuery Browser Tool Quick Start</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/hello_bigquery" data-title="bq Command-Line Tool Quick Start"><span>bq Command-Line Tool Quick Start</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/hello_bigquery_api" data-title="Using the BigQuery API Quick Start"><span>Using the BigQuery API Quick Start</span></a></li></ul></li><li class=""><a class="tlw-control tlw-expanded">▾</a><span class="tlw-title tlw-control-title" data-title="Developer Guide">Developer Guide</span><ul><li class="new"><a class="tlw-control tlw-collapsed">▸</a><a class="tlw-title" href="https://developers.google.com/bigquery/docs/developers_guide" data-title="API Overview (V2)"><span>API Overview (V2)<sup>New!</sup></span></a><ul style="display: none;"><li class=""><a href="https://developers.google.com/bigquery/docs/authorization" data-title="Authorizing Access"><span>Authorizing Access</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/data" data-title="Dealing with Data"><span>Dealing with Data</span></a></li><li class=""><a class="tlw-control tlw-collapsed">▸</a><a class="tlw-title" href="https://developers.google.com/bigquery/docs/queries" data-title="Running Queries"><span>Running Queries</span></a><ul style="display: none;"><li class=""><a href="https://developers.google.com/bigquery/docs/query-reference" data-title="Query Reference"><span>Query Reference</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/query-cookbook" data-title="Query Cookbook"><span>Query Cookbook</span></a></li></ul></li><li class=""><a href="https://developers.google.com/bigquery/docs/import" data-title="Importing &amp; Exporting Data"><span>Importing &amp; Exporting Data</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/managing_jobs_datasets_projects" data-title="Managing Jobs, Datasets, and Projects"><span>Managing Jobs, Datasets, and Projects</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/tables" data-title="Managing Tables"><span>Managing Tables</span></a></li></ul></li><li class=""><a href="https://developers.google.com/bigquery/docs/quota-policy" data-title="Quota Policy"><span>Quota Policy</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/libraries" data-title="Libraries"><span>Libraries</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/release_notes" data-title="Release Notes"><span>Release Notes</span></a></li><li class=""><a class="tlw-control tlw-expanded">▾</a><a class="tlw-title" href="https://developers.google.com/bigquery/docs/reference/v2/" data-title="API Reference"><span>API Reference</span></a><ul><li class=""><a class="tlw-control tlw-collapsed">▸</a><a class="tlw-title" href="https://developers.google.com/bigquery/docs/reference/v2/datasets" data-title="Datasets"><span>Datasets</span></a><ul style="display: none;"><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/datasets/delete" data-title="delete"><span>delete</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/datasets/get" data-title="get"><span>get</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/datasets/insert" data-title="insert"><span>insert</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/datasets/list" data-title="list"><span>list</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/datasets/update" data-title="update"><span>update</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/datasets/patch" data-title="patch"><span>patch</span></a></li></ul></li><li class="active"><a class="tlw-control tlw-expanded">▾</a><a class="tlw-title" href="https://developers.google.com/bigquery/docs/reference/v2/jobs" data-title="Jobs"><span>Jobs</span></a><ul><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/jobs/get" data-title="get"><span>get</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/jobs/getQueryResults" data-title="getQueryResults"><span>getQueryResults</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/jobs/insert" data-title="insert"><span>insert</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/jobs/list" data-title="list"><span>list</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/jobs/query" data-title="query"><span>query</span></a></li></ul></li><li class=""><a class="tlw-control tlw-collapsed">▸</a><a class="tlw-title" href="https://developers.google.com/bigquery/docs/reference/v2/projects" data-title="Projects"><span>Projects</span></a><ul style="display: none;"><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/projects/list" data-title="list"><span>list</span></a></li></ul></li><li class=""><a class="tlw-control tlw-collapsed">▸</a><a class="tlw-title" href="https://developers.google.com/bigquery/docs/reference/v2/tabledata" data-title="Tabledata"><span>Tabledata</span></a><ul style="display: none;"><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/tabledata/list" data-title="list"><span>list</span></a></li></ul></li><li class=""><a class="tlw-control tlw-collapsed">▸</a><a class="tlw-title" href="https://developers.google.com/bigquery/docs/reference/v2/tables" data-title="Tables"><span>Tables</span></a><ul style="display: none;"><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/tables/delete" data-title="delete"><span>delete</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/tables/get" data-title="get"><span>get</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/tables/insert" data-title="insert"><span>insert</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/tables/list" data-title="list"><span>list</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/tables/update" data-title="update"><span>update</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/reference/v2/tables/patch" data-title="patch"><span>patch</span></a></li></ul></li></ul></li></ul></li><li class=""><a class="tlw-control tlw-collapsed">▸</a><span class="tlw-title tlw-control-title" data-title="Tools">Tools</span><ul style="display: none;"><li class=""><a href="https://developers.google.com/bigquery/docs/browser_tool" data-title="BigQuery Browser Tool"><span>BigQuery Browser Tool</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/cli_tool" data-title="bq Command-Line Tool"><span>bq Command-Line Tool</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/bigquery_connector_for_excel" data-title="BigQuery Connector for Excel"><span>BigQuery Connector for Excel</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/third_party_tools" data-title="Third-party Tools"><span>Third-party Tools</span></a></li></ul></li><li class=""><a class="tlw-control tlw-collapsed">▸</a><span class="tlw-title tlw-control-title" data-title="Best Practices &amp; Tutorials">Best Practices &amp; Tutorials</span><ul style="display: none;"><li class=""><a href="https://developers.google.com/bigquery/best_practices/" data-title="Best Practices"><span>Best Practices</span></a></li><li class=""><a href="https://developers.google.com/bigquery/articles/" data-title="Tutorials"><span>Tutorials</span></a></li><li class=""><a href="http://www.youtube.com/playlist?list=PLOU2XLYxmsIKk5-eHOvuTwJvMkbV1DyUW" data-title="Videos"><span>Videos</span></a></li></ul></li><li class=""><a class="tlw-control tlw-collapsed">▸</a><span class="tlw-title tlw-control-title" data-title="Related APIs and Pages">Related APIs and Pages</span><ul style="display: none;"><li class=""><a href="https://developers.google.com/storage" data-title="Google Cloud Storage"><span>Google Cloud Storage</span></a></li><li class=""><a href="https://code.google.com/apis/console" data-title="Google APIs Console"><span>Google APIs Console</span></a></li></ul></li></ul><hr><ul><li class=""><a href="https://developers.google.com/bigquery/docs/sample-tables" data-title="Sample Datasets"><span>Sample Datasets</span></a></li><li class=""><a href="https://developers.google.com/bigquery/case_studies/" data-title="Case Studies"><span>Case Studies</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/support" data-title="Developer Support"><span>Developer Support</span></a></li></ul><hr><ul><li class=""><a href="https://developers.google.com/bigquery/docs/terms" data-title="Terms of Service"><span>Terms of Service</span></a></li><li class=""><a href="https://developers.google.com/bigquery/docs/sla" data-title="Service Level Agreement"><span>Service Level Agreement</span></a></li><li class=""><a href="https://developers.google.com/cloud/terms/aup" data-title="Acceptable Use Policy"><span>Acceptable Use Policy</span></a></li></ul><hr><ul></ul></nav>
+
+
+
+      </div>
+      
+
+      <div id="gc-content">
+        
+        <div>
+  
+          
+  
+  <h1 itemprop="name" class="page-title">Jobs</h1>
+  
+  <div itemprop="articleBody">
+  
+
+
+
+<section id="overview">
+  <p><span>Jobs are objects that manage asynchronous tasks such as exporting data, importing a table, and running a query.<br></span></p><div><p>You
+ can run multiple&nbsp;jobs concurrently in BigQuery, and completed jobs
+ will be listed in the Jobs collection indefinitely unless you call 
+bigquery.jobs.delete() on a job.</p><p></p></div><p></p>
+  <p>For a list of <a href="#methods">methods</a> for this resource, see the end of this page.</p>
+</section>
+
+<section id="resource">
+  <h2>Resource representations</h2>
+  <p>Template for a Job resource.</p>
+
+  <section>
+    <pre id="alt-json" class="prettyprint" style="max-height: 500px; overflow: auto"><span class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="str">"kind"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"bigquery#job"</span><span class="pun">,</span><span class="pln"><br>&nbsp; </span><span class="str">"etag"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="pln">etag</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; </span><span class="str">"selfLink"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; </span><span class="str">"jobReference"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"projectId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"jobId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pln"><br>&nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; </span><span class="str">"configuration"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"load"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><a href="#importing"><span class="pln">load config</span></a><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"extract"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><a href="#exporting"><span class="pln">extract config</span></a><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"copy"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><a href="#copying"><span class="pln">copy config</span></a><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"query"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><a href="#querying"><span class="pln">query config</span></a><span class="pun">}</span><span class="pln"><br>&nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; </span><span class="str">"status"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"state"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"errorResult"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"reason"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"location"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"debugInfo"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"message"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"errors"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"reason"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"location"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"debugInfo"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"message"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">]</span><span class="pln"><br>&nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; </span><span class="str">"statistics"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"startTime"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">long</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"endTime"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">long</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"totalBytesProcessed"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">long</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"query"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"totalBytesProcessed"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">long</span></var><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">"load"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"inputFiles"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">long</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"inputFileBytes"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">long</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"outputRows"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">long</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"outputBytes"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">long</span></var><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">}</span></pre>
+    <table class="matchpre" id="properties">
+      <thead>
+        <tr>
+          <th>Property name</th>
+          <th>Value</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr id="kind">
+        <td><code>kind</code></td>
+        <td><code class="apitype">bigquery#jobs</code></td>
+        <td>The type of resource. Always <code>bigquery#jobs</code>.</td>
+      </tr>
+      <tr id="etag">
+        <td><code>etag</code></td>
+        <td><code class="apitype">etag</code></td>
+        <td>[Output-only] A hash of this resource.</td>
+      </tr>
+      <tr id="id">
+        <td><code>id</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>A string that uniquely identifies this job across projects. Do not use this in methods that require a job ID; use the&nbsp;</span><code>jobReference</code><span>&nbsp;value instead.</span></td>
+      </tr>
+      <tr id="selfLink">
+        <td><code>selfLink</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>An URL that can be used to access this resource again. You can use this URL in get() requests for this resource.</span></td>
+      </tr>
+      <tr id="jobReference">
+        <td><code>jobReference</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td><span>Identifying information about this job.</span></td>
+      </tr>
+      <tr id="jobReference.projectId">
+        <td><code><span class="quiet">jobReference.</span>projectId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The ID of the project being billed for this job.</span></td>
+      </tr>
+      <tr id="jobReference.jobId">
+        <td><code><span class="quiet">jobReference.</span>jobId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>A unique ID for this job within the project. This 
+value is optional when you create a new job; if you do not specify a 
+value here, a random ID will be chosen for you. It must a string of 
+1-1,024 characters satisfying the regular expression&nbsp;</span><code>[a-zA-Z][\w]{0,1023}</code><span>, where&nbsp;</span><code>\w</code><span>&nbsp;is any digit, underscore, or upper or lowercase letter.</span></td>
+      </tr>
+      <tr id="configuration">
+        <td><code>configuration</code></td>
+        <td><code class="apitype">nested object</code></td>
+       <td><p>An object that specifies the details of this job. When 
+inserting a new job, include only one of the following child objects, 
+depending on what type of job this is.</p>
+        <ul>
+        <li><a href="#importing"><em>load</em></a>&nbsp;- Create and populate a new table from a CSV file</li>
+        <li><a href="#querying"><em>query</em></a>&nbsp;- Run a query</li>
+        <li><a href="#exporting"><em>extract</em></a>&nbsp;- Export a BigQuery table to Google Cloud Storage as a CSV file</li>
+        <li><a href="#copying"><em>copy</em></a>&nbsp;- Copy an existing table</li></ul></td>
+        
+      </tr>
+      <tr id="status">
+        <td><code>status</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td>[Output-only] The status of this job. Examine this value when polling an asynchronous job to see if the job is complete.</td>
+      </tr>
+      <tr id="status.state">
+        <td><code><span class="quiet">status.</span>state</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><p>The current state of this job. Supports the following string values:&nbsp;</p><ul><li><code>PENDING</code>&nbsp;- Queued</li><li><code>RUNNING</code>&nbsp;- Running.</li><li><code>DONE</code>&nbsp;- Completed, either successfully or not. If unsuccessful, the&nbsp;<em>errorResult</em>&nbsp;field should contain additional information.</li></ul></td>
+      </tr>
+      <tr id="status.errorResult">
+        <td><code><span class="quiet">status.</span>errorResult</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td><span>An object that will only be present if the job has failed.</span></td>
+      </tr>
+      <tr id="status.errorResult.reason">
+        <td><code><span class="quiet">status.errorResult.</span>reason</code></td>
+        <td><code class="apitype">string</code></td>
+        <td>Specifies the error reason. For example, reason will be "required" or "invalid" if some field was missing or malformed.</td>
+      </tr>
+      <tr id="status.errorResult.location">
+        <td><code><span class="quiet">status.errorResult.</span>location</code></td>
+        <td><code class="apitype">string</code></td>
+        <td>Specifies where the error occurred, if present.</td>
+      </tr>
+      <tr id="status.errorResult.message">
+        <td><code><span class="quiet">status.errorResult.</span>message</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>A user-friendly description of the error. If you want to trap specific errors, use&nbsp;</span><code>status.errors.code</code><span>.</span></td>
+      </tr>
+      <tr id="status.errors">
+        <td><code><span class="quiet">status.</span>errors[]</code></td>
+        <td><code class="apitype">list</code></td>
+        <td><span>A list of non-fatal errors that occurred during job 
+processing. It is possible that a job can complete successfully even if 
+there are some errors. In import or export requests, it is possible that
+ some rows were unable to be imported or exported due to errors.</span></td>
+      </tr>
+      <tr id="status.errors.reason">
+        <td><code><span class="quiet">status.errors[].</span>reason</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>A BigQuery error code appropriate for this error. See&nbsp;</span><a href="https://developers.google.com/bigquery/docs/data#handlingerrors">Handling Errors</a><span>.</span></td>
+      </tr>
+      <tr id="status.errors.location">
+        <td><code><span class="quiet">status.errors[].</span>location</code></td>
+        <td><code class="apitype">string</code></td>
+        <td>Specifies where the error occurred, if present.</td>
+      </tr>
+      <tr id="status.errors.message">
+        <td><code><span class="quiet">status.errors[].</span>message</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>A user-friendly description of the error. If you want to trap specific errors, use&nbsp;</span><code>status.errors.code</code><span>.</span></td>
+      </tr>
+      <tr id="statistics">
+        <td><code>statistics</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td>[Output-only] Information about the job, including starting time and ending time of the job.</td>
+      </tr>
+      <tr id="statistics.startTime">
+        <td><code><span class="quiet">statistics.</span>startTime</code></td>
+        <td><code class="apitype">long</code></td>
+        <td><span>Start time of this job, in milliseconds since the 
+epoch. This starts ticking when the job status changes to RUNNING, not 
+when the request is sent by the user or received by BigQuery.</span></td>
+      </tr>
+      <tr id="statistics.endTime">
+        <td><code><span class="quiet">statistics.</span>endTime</code></td>
+        <td><code class="apitype">long</code></td>
+        <td><span>End time of the job, in milliseconds since the epoch. 
+This is when the status changed to DONE, successfully or not. If the job
+ has not finished, this property will not be present.</span></td>
+      </tr>
+      <tr id="statistics.totalBytesProcessed">
+        <td><code><span class="quiet">statistics.</span>totalBytesProcessed</code></td>
+        <td><code class="apitype">long</code></td>
+        <td>[Output-only] [Deprecated] Use the bytes processed in the query statistics instead.</td>
+      </tr>
+      <tr id="status.errorResult.debugInfo">
+        <td><code><span class="quiet">status.errorResult.</span>debugInfo</code></td>
+        <td><code class="apitype">string</code></td>
+        <td>Debugging information for the service, if present. Should be ignored.</td>
+      </tr>
+      <tr id="status.errors.debugInfo">
+        <td><code><span class="quiet">status.errors[].</span>debugInfo</code></td>
+        <td><code class="apitype">string</code></td>
+        <td>Debugging information for the service, if present. Should be ignored.</td>
+      </tr>
+      <tr id="statistics.query">
+        <td><code><span class="quiet">statistics.</span>query</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td>[Output-only] Statistics for a query job.</td>
+      </tr>
+      <tr id="statistics.query.totalBytesProcessed">
+        <td><code><span class="quiet">statistics.query.</span>totalBytesProcessed</code></td>
+        <td><code class="apitype">long</code></td>
+        <td>[Output-only] Total bytes processed for this job.</td>
+      </tr>
+      <tr id="statistics.load">
+        <td><code><span class="quiet">statistics.</span>load</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td>[Output-only] Statistics for a load job.</td>
+      </tr>
+      <tr id="statistics.load.inputFiles">
+        <td><code><span class="quiet">statistics.load.</span>inputFiles</code></td>
+        <td><code class="apitype">long</code></td>
+        <td>[Output-only] Number of source files in a load job.</td>
+      </tr>
+      <tr id="statistics.load.inputFileBytes">
+        <td><code><span class="quiet">statistics.load.</span>inputFileBytes</code></td>
+        <td><code class="apitype">long</code></td>
+        <td>[Output-only] Number of bytes of source data in a joad job.</td>
+      </tr>
+      <tr id="statistics.load.outputRows">
+        <td><code><span class="quiet">statistics.load.</span>outputRows</code></td>
+        <td><code class="apitype">long</code></td>
+        <td>[Output-only] Number of rows imported in a load job. Note 
+that while an import job is in the running state, this value may change.</td>
+      </tr>
+      <tr id="statistics.load.outputBytes">
+        <td><code><span class="quiet">statistics.load.</span>outputBytes</code></td>
+        <td><code class="apitype">long</code></td>
+        <td>[Output-only] Size of the loaded data in bytes. Note that while an import job is in the running state, this value may change.</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</section>
+
+<h2 id="importing">Load Config</h2>
+<pre class="prettyprint"><span class="pln">&nbsp; &nbsp;</span><span class="str">"load"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"sourceUris"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><var class="apiparam"><span class="kwd">string</span></var><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="pun">],</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"schema"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"fields"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"name"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"type"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"mode"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"fields"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">(</span><span class="typ">TableFieldSchema</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">}</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"destinationTable"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"projectId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"datasetId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"tableId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"createDisposition"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"writeDisposition"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"fieldDelimiter"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"skipLeadingRows"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="pln">integer</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"encoding"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"quote"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"maxBadRecords"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="pln">integer</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"allowQuotedNewlines"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">boolean</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"sourceFormat"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span></pre>
+
+<table>
+<tbody>
+<tr><th>Property Name</th>
+<th>Value</th>
+<th>Description</th>
+    </tr><tr id="configuration.load">
+        <td><code><span class="quiet">configuration.</span>load</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td><span>An object that must be present only when importing data into a new or existing table from a CSV data file.</span></td>
+      </tr>
+      <tr id="configuration.load.sourceUris">
+        <td><code><span class="quiet">configuration.load.</span>sourceUris[]</code></td>
+        <td><code class="apitype">list</code></td>
+        <td><span>A list of one or more Google Cloud Storage objects 
+containing table data. The person calling jobs.insert must have read 
+access to all objects referenced. All objects must be uncompressed 
+or&nbsp;</span><a href="http://en.wikipedia.org/wiki/Gzip">gzipped</a><span>&nbsp;CSV files in the proper format, with the same table schema. These must be fully-qualified names, for example:&nbsp;</span><code>gs://mybucket/myobject.csv</code></td>
+      </tr>
+      <tr id="configuration.load.schema">
+        <td><code><span class="quiet">configuration.load.</span>schema</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td><span>A schema descriptor that describes the data. Only required if the table has never had a schema assigned. See </span><a href="https://developers.google.com/bigquery/docs/import#dataformats">Data Format</a><span>&nbsp;for a description of the supported file formats, data types, modes, and so on for a table.</span></td>
+      </tr>
+      <tr id="configuration.load.schema.fields">
+        <td><code><span class="quiet">configuration.load.schema.</span>fields[]</code></td>
+        <td><code class="apitype">list</code></td>
+        <td><span>A list of one or more objects, each describing a 
+column in the imported table(s) schema. These values will be applied to 
+the table created, if a new table is created rather than appended to.</span></td>
+      </tr>
+      <tr id="configuration.load.schema.fields.name">
+        <td><code><span class="quiet">configuration.load.schema.fields[].</span>name</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>A friendly name for this column. This name will be assigned to the column in the newly created table.</span></td>
+      </tr>
+      <tr id="configuration.load.schema.fields.type">
+        <td><code><span class="quiet">configuration.load.schema.fields[].</span>type</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The field type<span>.</span></span></td>
+      </tr>
+      <tr id="configuration.load.schema.fields.mode">
+        <td><code><span class="quiet">configuration.load.schema.fields[].</span>mode</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The field mode<span>. Default is <code>NULLABLE</code>.</span></span></td>
+      </tr>
+      <tr id="configuration.load.schema.fields.fields">
+        <td><code><span class="quiet">configuration.load.schema.fields[].</span>fields[]</code></td>
+        <td><code class="apitype">list</code></td>
+        <td><span>Present only in a column that holds&nbsp;</span><a href="https://developers.google.com/bigquery/docs/data#nested">nested fields</a><span>. This object describes any nested fields.</span></td>
+      </tr>
+      <tr id="configuration.load.destinationTable">
+        <td><code><span class="quiet">configuration.load.</span>destinationTable</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td><span>The tableID of the destination table to hold the 
+loaded data. Specify whether to create a new table or overwrite or 
+append to an existing one by setting&nbsp;</span><i>createDispostion</i><span>&nbsp;and&nbsp;</span><i>writeDispostion</i></td>
+      </tr>
+      <tr id="configuration.load.destinationTable.projectId">
+        <td><code><span class="quiet">configuration.load.destinationTable.</span>projectId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The ID of the project that contains the dataset to 
+write the result table to. If not specified, will write to the project 
+containing the job.</span></td>
+      </tr>
+      <tr id="configuration.load.destinationTable.datasetId">
+        <td><code><span class="quiet">configuration.load.destinationTable.</span>datasetId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The unqualified ID of the dataset to write the result table to. You must have write access in this dataset.</span></td>
+      </tr>
+      <tr id="configuration.load.destinationTable.tableId">
+        <td><code><span class="quiet">configuration.load.destinationTable.</span>tableId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The unqualified table ID of the table to create or append to. The table must already exist unless</span><code>configuration.load.createDisposition=CREATE_IF_NEEDED</code></td>
+      </tr>
+      <tr id="configuration.load.createDisposition">
+        <td><code><span class="quiet">configuration.load.</span>createDisposition</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><p>Whether or not to create a new table, if none exists. The following string values are supported:</p><ul><li><code>CREATE_NEVER</code>&nbsp;- Do not create a new table.</li><li><code>CREATE_IF_NEEDED</code>&nbsp;- [<i>Default</i>] If a table does not exist, create one.</li></ul></td>
+      </tr>
+      <tr id="configuration.load.writeDisposition">
+        <td><code><span class="quiet">configuration.load.</span>writeDisposition</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><p>Whether or not to overwrite an existing table. The following string values are supported:</p><ul><li><code>WRITE_EMPTY</code>&nbsp;- [<i>Default</i>] Only write to a table with no data, otherwise fail.</li><li><code>WRITE_TRUNCATE</code>&nbsp;- If a table exists, replace existing data with new data.</li><li><code>WRITE_APPEND</code>&nbsp;- If a table exists, append new data to the end.</li></ul></td>
+      </tr>
+      <tr id="configuration.load.fieldDelimiter">
+        <td><code><span class="quiet">configuration.load.</span>fieldDelimiter</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The field delimiter in the source file. By default, this is a comma. You can specify any ASCII character.</span></td>
+      </tr>
+      <tr id="configuration.load.skipLeadingRows">
+        <td><code><span class="quiet">configuration.load.</span>skipLeadingRows</code></td>
+        <td><code class="apitype">integer</code></td>
+        <td><span>How many of the top rows to skip when importing a CSV 
+file into a table. This is useful for skipping any header rows in the 
+CSV file. Default value is 0 (all rows considered data rows).</span></td>
+      </tr>
+      <tr id="configuration.load.encoding">
+        <td><code><span class="quiet">configuration.load.</span>encoding</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The encoding of the source data. This is useful if 
+you're trying to import ISO-8859-1 (or Latin-1) encoded data and are 
+having problems with your imported data (e.g. if your data is displaying
+ invalid characters). You can use this parameter to let BigQuery know 
+that your data is encoded in ISO-8859-1 or UTF-8 and BigQuery converts 
+the data to UTF-8 if necessary. The supported values for this parameter 
+are:<br><br></span><ul><li><code>UTF-8</code>&nbsp;- This is the default encoding. If you do not specify this parameter, it is assumed that the data is UTF-8 encoded.</li><li><code>ISO-8859-1</code>&nbsp;- If your data is encoded in ISO-8859-1 (or Latin-1), specify this value.</li></ul></td>
+      </tr>
+      <tr id="configuration.load.maxBadRecords">
+        <td><code><span class="quiet">configuration.load.</span>maxBadRecords</code></td>
+        <td><code class="apitype">integer</code></td>
+        <td><span>How many bad records to ignore before the entire 
+import job is aborted and no updates are performed. If this value is 
+larger than 0, the job will succeed as long as the number of bad records
+ do not exceed this value. This is useful if you would like to import 
+files that may have bad records. The default value for this parameter is
+ 0 (all rows are required to be valid).</span></td>
+      </tr>
+      <tr id="configuration.load.quote">
+        <td><code><span class="quiet">configuration.load.</span>quote</code></td>
+        <td><code class="apitype">string</code></td>
+        <td>[Optional] Quote character to use. Default is '"'. Note that
+ quoting is done on the raw, binary data before the encoding is applied.
+ If no quoting is done, use am empty string.</td>
+      </tr>
+      <tr id="configuration.load.allowQuotedNewlines">
+        <td><code><span class="quiet">configuration.load.</span>allowQuotedNewlines</code></td>
+        <td><code class="apitype">boolean</code></td>
+        <td>[Experimental] Whether to allow quoted newlines in the source CSV data. If this is set to <code>FALSE</code>, it allows for larger import sizes and may speed up import performance.</td>
+      </tr>
+      <tr id="configuration.load.sourceFormat">
+        <td><code><span class="quiet">configuration.load.</span>sourceFormat</code></td>
+        <td><code class="apitype">string</code></td>
+        <td>Optional and defaults to CSV. Format of source files. For 
+CSV uploads, specify "CSV". For imports of datastore backups, specify 
+"DATASTORE_BACKUP". For imports of newline-delimited JSON, specify 
+"NEWLINE_DELIMITED_JSON".</td>
+      </tr>
+</tbody>
+</table>
+
+<h2 id="exporting">Extract Config</h2>
+<pre class="prettyprint"><span class="pln">&nbsp; &nbsp; </span><span class="str">"extract"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"sourceTable"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"projectId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"datasetId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"tableId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"destinationUri"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"printHeader"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">boolean</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"fieldDelimiter"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"destinationFormat"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span></pre>
+
+<table>
+<tbody>
+<tr><th>Property Name</th>
+<th>Value</th>
+<th>Description</th>
+      </tr><tr id="configuration.extract">
+        <td><code><span class="quiet">configuration.</span>extract</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td><span>An object present if this is a job that exports a table to Google Cloud Storage.</span></td>
+      </tr>
+      <tr id="configuration.extract.sourceTable">
+        <td><code><span class="quiet">configuration.extract.</span>sourceTable</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td><span>An object describing the BigQuery table to be exported.</span></td>
+      </tr>
+      <tr id="configuration.extract.sourceTable.projectId">
+        <td><code><span class="quiet">configuration.extract.sourceTable.</span>projectId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The ID of the project containing the source table.</span></td>
+      </tr>
+      <tr id="configuration.extract.sourceTable.datasetId">
+        <td><code><span class="quiet">configuration.extract.sourceTable.</span>datasetId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The datasetId of the dataset containing the source table. You must have read access on this dataset.</span></td>
+      </tr>
+      <tr id="configuration.extract.sourceTable.tableId">
+        <td><code><span class="quiet">configuration.extract.sourceTable.</span>tableId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The tableId of the table to export, in the specified dataset.</span></td>
+      </tr>
+      <tr id="configuration.extract.destinationUri">
+        <td><code><span class="quiet">configuration.extract.</span>destinationUri</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The fully-qualified Google Cloud Storage URI of the object where you will save the table. This is in the format&nbsp;</span><em>bucket/object</em><span>&nbsp;with the&nbsp;</span><code>gs://</code><span>&nbsp;prefix. You must have&nbsp;</span><a href="https://developers.google.com/apis/storage/docs/accesscontrol">write access on this bucket</a><span>.&nbsp;<br></span><br><b>Example:</b><code>gs://mybucket/myobject</code>
+
+       <p><br>To export to multiple files, provide a wild card in the URI:
+          </p><pre>gs://mybucket/myobject-*</pre>
+           <p>Which creates files named:</p>
+          <pre>gs://mybucket/myobject-0000
+gs://mybucket/myobject-0001
+gs://mybucket/myobject-0002
+....</pre>
+         </td>
+      </tr>
+      <tr id="configuration.extract.printHeader">
+        <td><code><span class="quiet">configuration.extract.</span>printHeader</code></td>
+        <td><code class="apitype">boolean</code></td>
+        <td>[Optional] Whether to print out a heder row in the results. Default is true.</td>
+      </tr>
+      <tr id="configuration.extract.fieldDelimiter">
+        <td><code><span class="quiet">configuration.extract.</span>fieldDelimiter</code></td>
+        <td><code class="apitype">string</code></td>
+        <td>[Optional] Delimiter to use between fields in the exported data. Default is ','</td>
+      </tr>
+      <tr id="configuration.extract.destinationFormat">
+        <td><code><span class="quiet">configuration.extract.</span>destinationFormat</code></td>
+        <td><code class="apitype">string</code></td>
+        <td>Optional and defaults to CSV. Format with which files should
+ be exported. To export to CSV, specify "CSV". Tables with nested or 
+repeated fields cannot be exported as CSV. To export to 
+newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON".</td>
+      </tr>
+</tbody>
+</table>
+
+<h2 id="copying">Copy Config</h2>
+<pre class="prettyprint"><span class="pln">&nbsp; &nbsp; </span><span class="str">"copy"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"sourceTable"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"projectId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"datasetId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"tableId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"destinationTable"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"projectId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"datasetId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="str">"tableId"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"createDisposition"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="str">"writeDisposition"</span><span class="pun">:</span><span class="pln"> </span><var class="apiparam"><span class="kwd">string</span></var><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">}</span></pre>
+
+<table>
+<tbody>
+<tr><th>Property Name</th>
+<th>Value</th>
+<th>Description</th>
+     </tr><tr id="configuration.copy">
+        <td><code><span class="quiet">configuration.</span>copy</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td><span>An object that must be present when copying an existing table to another table.</span></td>
+      </tr>
+      <tr id="configuration.copy.sourceTable">
+        <td><code><span class="quiet">configuration.copy.</span>sourceTable</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td><span>An object describing the BigQuery table to be copied.</span></td>
+      </tr>
+      <tr id="configuration.copy.sourceTable.projectId">
+        <td><code><span class="quiet">configuration.copy.sourceTable.</span>projectId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The ID of the project containing the source table.</span></td>
+      </tr>
+      <tr id="configuration.copy.sourceTable.datasetId">
+        <td><code><span class="quiet">configuration.copy.sourceTable.</span>datasetId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The datasetId of the dataset containing the source table. You must have read access on this dataset.</span></td>
+      </tr>
+      <tr id="configuration.copy.sourceTable.tableId">
+        <td><code><span class="quiet">configuration.copy.sourceTable.</span>tableId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The tableId of the table to copy, in the specified dataset.</span></td>
+      </tr>
+      <tr id="configuration.copy.destinationTable">
+        <td><code><span class="quiet">configuration.copy.</span>destinationTable</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td><span>The tableID of the destination table that will hold 
+the copied data. Specify whether to create a new table or overwrite or 
+append to an existing one by setting&nbsp;</span><i>createDispostion</i><span>&nbsp;and&nbsp;</span><i>writeDispostion</i></td>
+      </tr>
+      <tr id="configuration.copy.destinationTable.projectId">
+        <td><code><span class="quiet">configuration.copy.destinationTable.</span>projectId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The ID of the project that contains the dataset of the
+ destination table. If not specified, will write to the project 
+containing the job.</span></td>
+      </tr>
+      <tr id="configuration.copy.destinationTable.datasetId">
+        <td><code><span class="quiet">configuration.copy.destinationTable.</span>datasetId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The unqualified ID of the dataset that contains, or 
+will contain, the destination table. You must have write access in this 
+dataset.</span></td>
+      </tr>
+      <tr id="configuration.copy.destinationTable.tableId">
+        <td><code><span class="quiet">configuration.copy.destinationTable.</span>tableId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The unqualified table ID of the table to create or append to. The table must already exist unless</span><code>configuration.load.createDisposition=CREATE_IF_NEEDED</code></td>
+      </tr>
+      <tr id="configuration.copy.createDisposition">
+        <td><code><span class="quiet">configuration.copy.</span>createDisposition</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><p>Whether or not to create a new table, if none exists. The following string values are supported:</p><ul><li><code>CREATE_NEVER</code>&nbsp;- Do not create a new table.</li><li><code>CREATE_IF_NEEDED</code>&nbsp;- [<i>Default</i>] If a table does not exist, create one.</li></ul></td>
+      </tr>
+      <tr id="configuration.copy.writeDisposition">
+        <td><code><span class="quiet">configuration.copy.</span>writeDisposition</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><p>hether or not to overwrite an existing table. The following string values are supported:</p><ul><li><code>WRITE_EMPTY</code>&nbsp;- [<i>Default</i>] Only write to a table with no data, otherwise fail.</li><li><code>WRITE_TRUNCATE</code>&nbsp;- If a table exists, replace existing data with new data.</li><li><code>WRITE_APPEND</code>&nbsp;- If a table exists, append new data to the end.</li></ul></td>
+      </tr>
+</tbody>
+</table>
+
+<h2 id="querying">Query Config</h2>
+<pre>   "query": {
+      "query": <var class="apiparam">string</var>,
+      "destinationTable": {
+        "projectId": <var class="apiparam">string</var>,
+        "datasetId": <var class="apiparam">string</var>,
+        "tableId": <var class="apiparam">string</var>
+      },
+      "createDisposition": <var class="apiparam">string</var>,
+      "writeDisposition": <var class="apiparam">string</var>,
+      "defaultDataset": {
+        "datasetId": <var class="apiparam">string</var>,
+        "projectId": <var class="apiparam">string</var>
+      },
+      "priority": <var class="apiparam">string</var>
+    }</pre>
+
+<table>
+<tbody>
+<tr><th>Property Name</th>
+<th>Value</th>
+<th>Description</th>
+      </tr><tr id="configuration.query">
+        <td><code><span class="quiet">configuration.</span>query</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td><span>An object that must be present only when sending a&nbsp;</span><a href="https://developers.google.com/bigquery/docs/queries">query</a><span>. If the query returns one or more result rows, results will be stored in the table specified by the&nbsp;</span><em>destinationTable</em><span>&nbsp;property.</span></td>
+      </tr>
+      <tr id="configuration.query.query">
+        <td><code><span class="quiet">configuration.query.</span>query</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>A query string, following the&nbsp;</span><a href="https://developers.google.com/bigquery/docs/query-reference">BigQuery query syntax</a><span>&nbsp;of the query to execute. Table names should be qualified by dataset name in the format</span><em>projectId:datasetId.</em><em>tableId</em><span>&nbsp;unless you specify the&nbsp;</span><em>defaultDataset</em><span>&nbsp;value. If the table is in the same project as the job, you can omit the project ID.<br></span><b><br>Example:&nbsp;</b><code>SELECT f1 FROM myprojectId:myDatasetId.myTableId</code></td>
+      </tr>
+      <tr id="configuration.query.destinationTable">
+        <td><code><span class="quiet">configuration.query.</span>destinationTable</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td>Describes the table where the query results should be stored. If not present, a new table will be created to store the results.</td>
+      </tr>
+      <tr id="configuration.query.destinationTable.projectId">
+        <td><code><span class="quiet">configuration.query.destinationTable.</span>projectId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td>[Required] ID of the project billed for storage of the table.</td>
+      </tr>
+      <tr id="configuration.query.destinationTable.datasetId">
+        <td><code><span class="quiet">configuration.query.destinationTable.</span>datasetId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The datasetId of the dataset in which to create the 
+result table. This is not qualified by the project ID. You must have 
+write access on this dataset. If the specified dataset does not exist, 
+the method will return an error.</span></td>
+      </tr>
+      <tr id="configuration.query.destinationTable.tableId">
+        <td><code><span class="quiet">configuration.query.destinationTable.</span>tableId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The tableId of the table to hold the results. This can be an existing table or not, depending on the&nbsp;</span><em>query.createDisposition</em><span>&nbsp;value.</span></td>
+      </tr>
+      <tr id="configuration.query.createDisposition">
+        <td><code><span class="quiet">configuration.query.</span>createDisposition</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><p>Whether to create a results table if no table by that ID already exists. The following string values are supported:</p><ul><li><code>CREATE_NEVER</code>&nbsp;- Do not create a new table to hold results.</li><li><code>CREATE_IF_NEEDED</code>&nbsp;- [<i>Default</i>] Create a new table if one does not exist.</li></ul></td>
+      </tr>
+      <tr id="configuration.query.writeDisposition">
+        <td><code><span class="quiet">configuration.query.</span>writeDisposition</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><p></p><p>Whether or not to overwrite an existing results table with the specified name. The following string values are supported:</p><ul><li><code>WRITE_EMPTY</code>&nbsp;- [<i>Default</i>] Only write to a table with no data, otherwise fail.</li><li><code>WRITE_TRUNCATE</code>&nbsp;-
+ Clear the data from the existing table and append the output data. The 
+table schema must match the schema of the new data.</li><li><code>WRITE_APPEND</code>&nbsp;- Append the new data to any existing data. The table schema must match the schema of the new data.</li></ul><p></p></td>
+      </tr>
+      <tr id="configuration.query.defaultDataset">
+        <td><code><span class="quiet">configuration.query.</span>defaultDataset</code></td>
+        <td><code class="apitype">nested object</code></td>
+        <td><span>Specifies the default datasetId and projectId to 
+assume for any unqualified table names in the query. If not set, all 
+table names in the query string must be fully-qualified in the format</span><em>projectId:datasetId.tableid</em><span>. You must specify either both datasetId and projectId, or neither (omit this object).</span></td>
+      </tr>
+      <tr id="configuration.query.defaultDataset.datasetId">
+        <td><code><span class="quiet">configuration.query.defaultDataset.</span>datasetId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The assumed dataset ID of any tables that are not qualified by dataset.</span></td>
+      </tr>
+      <tr id="configuration.query.defaultDataset.projectId">
+        <td><code><span class="quiet">configuration.query.defaultDataset.</span>projectId</code></td>
+        <td><code class="apitype">string</code></td>
+        <td><span>The assumed project ID of any tables not qualified by project.</span></td>
+      </tr>
+      <tr id="configuration.query.priority">
+        <td><code><span class="quiet">configuration.query.</span>priority</code></td>
+        <td><code class="apitype">string</code></td>
+        <td>[Optional] Specifies a priority for the query. Default is INTERACTIVE. Alternative is BATCH.</td>
+      </tr>
+</tbody>
+</table>
+
+<section id="methods">
+  <h2>Methods</h2>
+
+
+<p><span>The following methods are supported:</span></p>
+
+  <dl>
+
+
+      <dt><a href="https://developers.google.com/bigquery/docs/reference/v2/jobs/get">get</a></dt>
+      <dd><span>Retrieves the specified&nbsp;</span><a href="#resource">job</a><span>&nbsp;by ID.&nbsp;</span><strong>Note:</strong><span>&nbsp;Specify the unqualified&nbsp;</span><em>jobId</em><span>&nbsp;value,&nbsp;</span><em>not</em><span>&nbsp;the fully-qualified&nbsp;</span><em>id</em><span>&nbsp;value of the job.</span></dd>
+
+
+
+      <dt><a href="https://developers.google.com/bigquery/docs/reference/v2/jobs/getQueryResults">getQueryResults</a></dt>
+      <dd><span>Returns query results from a query started by calling&nbsp;</span><a href="https://developers.google.com/bigquery/docs/reference/v2/jobs/query"><code>bigquery.jobs.query()</code></a><span>.
+ You can specify an optional wait time if the query is still running 
+when the method is called; if the timeout expires before the query 
+finishes, the method will return&nbsp;</span><code>jobComplete=false</code><span>,,
+ and you will have to call it again to get query results. The maximum 
+number of results that can be returned per page is 16,000 rows.</span></dd>
+
+
+
+      <dt><a href="https://developers.google.com/bigquery/docs/reference/v2/jobs/insert">insert</a></dt>
+      <dd><span>Starts a new asynchronous job. You must have READ access to a project in order to run a job.</span></dd>
+
+
+
+      <dt><a href="https://developers.google.com/bigquery/docs/reference/v2/jobs/list">list</a></dt>
+      <dd><span>Lists all the Jobs in the current project started by the
+ user calling this method. Jobs are retained indefinitely unless you 
+call&nbsp;</span><a href="https://developers.google.com/bigquery/docs/reference/v2/jobs/delete"><code>bigquery.jobs.delete</code></a><span>&nbsp;on a job. Authentication is required.</span></dd>
+
+
+
+      <dt><a href="https://developers.google.com/bigquery/docs/reference/v2/jobs/query">query</a></dt>
+      <dd><span>Runs a query with an optional waiting period. The method
+ will wait the specified waiting period to return; if the query has 
+completed by then, the reply will include the first page of results; if 
+the query has not completed by the specified waiting period, the method 
+will return&nbsp;</span><code>jobComplete=false</code><span>, and you will have to call&nbsp;</span><a class="apimethod" href="https://developers.google.com/bigquery/docs/reference/v2/jobs/getQueryResults"><code>bigquery.jobs.getQueryResults()</code></a><span>&nbsp;to
+ get the query results. If you do not specify a waiting period, the 
+method will hang until the query completes, or the job times out.</span></dd>
+
+  </dl>
+</section>
+
+
+
+  
+  </div>
+
+  
+        </div>
+        
+<div id="gc-content-footer">
+
+
+
+<div itemprop="datePublished" content="2012-10-01T17:05:26.925910" id="gc-content-last-updated">Last updated October 1, 2012.</div>
+
+</div>
+
+
+
+
+      </div>
+  
+
+        
+      </div>
+        
+      
+
+      
+      
+      <footer id="gc-footer">
+        <div id="gc-copyright">
+          <a href="https://developers.google.com/">
+            <img id="developers-logo-footer" src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/developers-logo-footer.png" alt="Google Developers logo" style="vertical-align: center; float: left">
+          </a>
+          <ul>
+            <li><a href="http://www.google.com/">Google</a></li>
+            <li><a href="https://developers.google.com/readme/terms">Terms of Service</a></li>
+            <li><a href="http://www.google.com/intl/en/privacy/">Privacy Policy</a></li>
+            <li><a href="https://developers.google.com/jobs">Jobs</a></li>
+            <li><a class="google-feedback" data-p="81425" data-b="Documentation" data-v="devsite-20130111b-rc00.364520799791384298" href="">Report a bug</a></li>
+          </ul>
+        </div>
+        
+        <div id="gc-language">
+          <ul>
+            <li>
+              <form id="setlang" action="/i18n/setlang/" method="post">
+                <div style="display:none"><input name="csrfmiddlewaretoken" value="af10ec6e6cc1b0e7f486a895826e3b9f" type="hidden"></div>
+                <select style="display: none;" id="footer_language" name="language">
+                  
+                  
+                  <option value="ar">
+                    العربيّة
+                  </option>
+                  
+                  <option value="bg">
+                    български
+                  </option>
+                  
+                  <option value="ca">
+                    català
+                  </option>
+                  
+                  <option value="zh-cn">
+                    简体中文
+                  </option>
+                  
+                  <option value="zh-tw">
+                    繁體中文
+                  </option>
+                  
+                  <option value="hr">
+                    Hrvatski
+                  </option>
+                  
+                  <option value="cs">
+                    česky
+                  </option>
+                  
+                  <option value="da">
+                    Dansk
+                  </option>
+                  
+                  <option value="nl">
+                    Nederlands
+                  </option>
+                  
+                  <option value="en" selected="selected">
+                    English
+                  </option>
+                  
+                  <option value="fa">
+                    فارسی
+                  </option>
+                  
+                  <option value="fi">
+                    suomi
+                  </option>
+                  
+                  <option value="fr">
+                    Français
+                  </option>
+                  
+                  <option value="de">
+                    Deutsch
+                  </option>
+                  
+                  <option value="el">
+                    Ελληνικά
+                  </option>
+                  
+                  <option value="he">
+                    עברית
+                  </option>
+                  
+                  <option value="hi">
+                    Hindi
+                  </option>
+                  
+                  <option value="hu">
+                    Magyar
+                  </option>
+                  
+                  <option value="id">
+                    Bahasa Indonesia
+                  </option>
+                  
+                  <option value="it">
+                    italiano
+                  </option>
+                  
+                  <option value="ja">
+                    日本語
+                  </option>
+                  
+                  <option value="ko">
+                    한국어
+                  </option>
+                  
+                  <option value="lv">
+                    latviešu
+                  </option>
+                  
+                  <option value="lt">
+                    Lithuanian
+                  </option>
+                  
+                  <option value="nb">
+                    Norsk (bokmål)
+                  </option>
+                  
+                  <option value="nn">
+                    Norsk (nynorsk)
+                  </option>
+                  
+                  <option value="pl">
+                    polski
+                  </option>
+                  
+                  <option value="pt-br">
+                    Português Brasileiro
+                  </option>
+                  
+                  <option value="pt">
+                    Português
+                  </option>
+                  
+                  <option value="ro">
+                    Română
+                  </option>
+                  
+                  <option value="ru">
+                    Русский
+                  </option>
+                  
+                  <option value="sr">
+                    српски
+                  </option>
+                  
+                  <option value="sk">
+                    slovenský
+                  </option>
+                  
+                  <option value="sl">
+                    Slovenščina
+                  </option>
+                  
+                  <option value="es">
+                    español
+                  </option>
+                  
+                  <option value="sv">
+                    Svenska
+                  </option>
+                  
+                  <option value="th">
+                    Thai
+                  </option>
+                  
+                  <option value="tr">
+                    Türkçe
+                  </option>
+                  
+                  <option value="uk">
+                    Українська
+                  </option>
+                  
+                  <option value="vi">
+                    Vietnamese
+                  </option>
+                  
+                </select><span class="kd-button kd-menubutton kd-select"><div style="display: inline-block;"><div style="float: left;" class="label">
+                    English
+                  </div><div class="kd-disclosureindicator"></div></div></span>
+              </form>
+            </li>
+          </ul>
+        </div>
+        
+      </footer>
+      
+      
+    </div>
+    <div id="needAuth" class="msgDialogContent">
+      
+      <h1>Authentication required</h1>
+      
+      <div>
+        You need to be signed in with <a href="http://www.google.com/+">Google+</a> to do that.
+      </div>
+      <button>Sign in</button>
+      <button>Cancel</button>
+    </div>
+    <div id="signingIn" class="msgDialogContent">
+      
+      <h1>Signing you in...</h1>
+      <div>
+        
+        Google Developers needs your permission to do that.
+      </div>
+      
+      <button>Try again</button>
+      
+      <button>Cancel</button>
+    </div>
+    <script src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/script_foot.js"></script>
+    <script>
+      (function($) {
+        devsite.devsite.Init($, null, '');
+      })(jQuery);
+
+      
+      devsite.localInit = function() {
+        
+      };
+      
+    </script>
+    <!-- Google Code for PXL - Developers - Codesite - HP - 90d Remarketing List -->
+    <script type="text/javascript">
+    $('#setlang select').each(function() {
+      if ($.browser.msie) {
+        $(this).change(function() {
+          $('#setlang').submit();
+        });
+      } else {
+        $(this).kdSelect({'change': function() {
+          $('#setlang').submit();
+        }});
+      }
+    });
+    </script><ul class="kd-menulist" style="position: absolute; left: 960px; top: 10059.8px; display: none;"><li style="" class="kd-menulistitem">
+                    العربيّة
+                  </li><li class="kd-menulistitem">
+                    български
+                  </li><li class="kd-menulistitem">
+                    català
+                  </li><li class="kd-menulistitem">
+                    简体中文
+                  </li><li class="kd-menulistitem">
+                    繁體中文
+                  </li><li class="kd-menulistitem">
+                    Hrvatski
+                  </li><li class="kd-menulistitem">
+                    česky
+                  </li><li class="kd-menulistitem">
+                    Dansk
+                  </li><li class="kd-menulistitem">
+                    Nederlands
+                  </li><li class="kd-menulistitem selected">
+                    English
+                  </li><li class="kd-menulistitem">
+                    فارسی
+                  </li><li class="kd-menulistitem">
+                    suomi
+                  </li><li class="kd-menulistitem">
+                    Français
+                  </li><li class="kd-menulistitem">
+                    Deutsch
+                  </li><li class="kd-menulistitem">
+                    Ελληνικά
+                  </li><li class="kd-menulistitem">
+                    עברית
+                  </li><li class="kd-menulistitem">
+                    Hindi
+                  </li><li class="kd-menulistitem">
+                    Magyar
+                  </li><li class="kd-menulistitem">
+                    Bahasa Indonesia
+                  </li><li class="kd-menulistitem">
+                    italiano
+                  </li><li class="kd-menulistitem">
+                    日本語
+                  </li><li class="kd-menulistitem">
+                    한국어
+                  </li><li class="kd-menulistitem">
+                    latviešu
+                  </li><li class="kd-menulistitem">
+                    Lithuanian
+                  </li><li class="kd-menulistitem">
+                    Norsk (bokmål)
+                  </li><li class="kd-menulistitem">
+                    Norsk (nynorsk)
+                  </li><li class="kd-menulistitem">
+                    polski
+                  </li><li class="kd-menulistitem">
+                    Português Brasileiro
+                  </li><li class="kd-menulistitem">
+                    Português
+                  </li><li class="kd-menulistitem">
+                    Română
+                  </li><li class="kd-menulistitem">
+                    Русский
+                  </li><li class="kd-menulistitem">
+                    српски
+                  </li><li class="kd-menulistitem">
+                    slovenský
+                  </li><li class="kd-menulistitem">
+                    Slovenščina
+                  </li><li class="kd-menulistitem">
+                    español
+                  </li><li class="kd-menulistitem">
+                    Svenska
+                  </li><li class="kd-menulistitem">
+                    Thai
+                  </li><li class="kd-menulistitem">
+                    Türkçe
+                  </li><li class="kd-menulistitem">
+                    Українська
+                  </li><li class="kd-menulistitem">
+                    Vietnamese
+                  </li></ul>
+    <script type="text/javascript">
+      /* <![CDATA[ */
+      var google_conversion_id = 992540712;
+      var google_conversion_language = "en";
+      var google_conversion_format = "3";
+      var google_conversion_color = "ffffff";
+      var google_conversion_label = "qio2CKCPwQMQqPCj2QM";
+      var google_conversion_value = 0;
+      /* ]]> */
+    </script>
+    <script type="text/javascript" src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/conversion.js">
+    </script><img src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/a.gif" height="1" border="0" width="1">
+
+    
+
+    <script>
+      
+      google.load('visualization', '1', {packages: ['table']});
+    </script><script src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/a" type="text/javascript"></script><script src="Jobs%20-%20Google%20BigQuery%20%E2%80%94%20Google%20Developers_files/formatendefaulttable.js" type="text/javascript"></script>
+
+    <noscript>
+      <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/992540712/?label=qio2CKCPwQMQqPCj2QM&amp;guid=ON&amp;script=0"/>
+      </div>
+    </noscript>
+    
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+    // Render any carousels on the page
+    $('.carousel').carousel();
+    // Render any feed widgets on the page
+    
+    $('.feed').rss();
+    $('.feed-plain').rss();
+    // Render any OSS widgets on the page.
+    $('.oss').oss();
+    });
+</script>
+
+<script type="text/javascript" defer="defer">
+
+
+$(document).ready(function() {
+    contentTimer.name = 'content';
+    contentTimer.tick('ol');
+    window.jstiming.report(contentTimer);
+
+    // Boilerplate javascript to enable the plusone button
+    var po = document.createElement('script'); po.type = 'text/javascript';
+    po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js?onload=devsite_plusoneLoaded';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(po, s);
+});
+</script>
+
+
+
+
+  
+
+  
+
+</body></html>
