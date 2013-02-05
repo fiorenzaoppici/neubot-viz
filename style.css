@@ -1,0 +1,147 @@
+/*  Elementi base della pagina
+ *  LOGO: logo di neubot
+ *  WBACKGROUND: classe div contenuto
+ *  GRAPHAREA: div che contiene il grafico
+ *  WRAPPER: div esterno per l'allineamento
+ *  PREV/NEXT: avanzatori di livello
+ */
+
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    background-image: url("media/paper.jpg")
+}
+
+div {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 700px;
+}
+
+/*h1 {
+	color: white;
+	display: block;
+	text-align: center;
+}
+
+#logo {
+	display: inline-block;
+	width: 64px;
+	height: 64px;
+	background-image: url('http://www.neubot.org/neubotfiles/neubot_icon.png');
+}
+
+*/
+h3 {
+	color: #0F636E;
+	padding: 20px;
+	display: inline-block;
+}
+
+
+.wbackground {
+	border: 1px solid #0F636E;
+	background-color: rgba(150,192,201,0.5)
+}
+
+#parameters{
+	-webkit-border-top-left-radius: 20px;
+	-webkit-border-top-right-radius: 20px;
+	-moz-border-radius-topleft: 20px;
+	-moz-border-radius-topright: 20px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	
+	border-bottom:none;
+}
+
+#grapharea {
+	height: 500px;
+	border-top:none;
+	margin-top:none;
+}
+
+input{
+	width:120px;
+	float:right;
+	display:inline;
+}
+
+#fields{
+    width:300px;
+	margin-left: 200px;
+	margin-top:50px;
+	border: 1px solid blue;
+	display:inline-block;
+}
+
+span {
+	display:block;
+	width:280px;
+	height:40px;
+	float:right;
+	margin-top:10px;
+	margin-left:10px;
+}
+
+button{
+	height:30px;
+	float:right;
+	background:#0F636E;
+	color:white;
+	margin:10px;
+	border:none;
+	-webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+    border-radius: 5px;
+	}
+
+
+/* gestione stile elementi svg
+ * 
+ * BACKGROUND: sfondo grafico
+ * PATH: linea funzione
+ * AXIS: assi cartesiani del grafico
+ * UPLOAD/DOWNLOAD classe che contiene i differenti gruppi di traffico (cerchi +path)
+ */
+
+.background {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 15pt;
+}
+
+path {
+	fill: none;
+	stroke-width: 1.5px;
+}
+
+.axis path, .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+	
+}
+
+.axis text{
+	font-family: Arial;
+	font-size: 9pt;
+}
+
+.upload {
+	fill: red;
+	stroke: orange;
+	stroke-width: 3px;
+}
+
+.download {
+	fill: blue;
+	stroke: steelblue;
+	stroke-width: 3px;
+}
+
+path.upload {
+	fill: none;
+}
+path.download {
+	fill: none;
+}
