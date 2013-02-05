@@ -1,0 +1,62 @@
+[
+  {
+    "name": "connect_time",
+    "type": "float"
+  },
+  {
+    "name": "download_speed",
+    "type": "float"
+  },
+  {
+    "name": "internal_address",
+    "type": "string"
+  },
+  {
+    "name": "latency",
+    "type": "float"
+  },
+  {
+    "name": "neubot_version",
+    "type": "float"
+  },
+  {
+    "name": "platform",
+    "type": "string"
+  },
+  {
+    "name": "privacy_can_collect",
+    "type": "integer"
+  },
+  {
+    "name": "privacy_can_publish",
+    "type": "integer"
+  },
+  {
+    "name": "privacy_informed",
+    "type": "integer"
+  },
+  {
+    "name": "real_address",
+    "type": "string"
+  },
+  {
+    "name": "remote_address",
+    "type": "string"
+  },
+  {
+    "name": "test_version",
+    "type": "integer"
+  },
+  {
+    "name": "timestamp",
+    "type": "integer"
+  },
+  {
+    "name": "upload_speed",
+    "type": "float"
+  },
+  {
+    "name": "uuid",
+    "type": "string"
+  },
+]

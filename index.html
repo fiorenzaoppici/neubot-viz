@@ -5,39 +5,158 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Neubot online tool</title>
 		<link rel="stylesheet" type="text/css" href="style.css" />
-		<script src="Js/d3.v3.min.js"></script>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<script src="js/d3.v3.min.js"></script>
+
 	</head>
 	<body>
 		<div id="parameters" class="wbackground">
 			<h3></h3>
-			<select name="linguaggi" class="selectior">
-				<option value="0" selected> days <option value="1" selected> hours <option value="-1"> months
+			<select id="timebasis" class="selectior">
+				<option value="2" selected> days <option value="1"> hours 
+				<option value="3"> months
 			</select>
 			<div id="fields">
-				<span>Start date:<input id="startDate"></input></span>
-				<span> End date:<input id="endDate"></input></span>
-				<button>Submit!</button>
+				<span>Start date:
+					<input id="startDate">
+					</input></span>
+				<span> End date:
+					<input id="endDate">
+					</input></span>
+				<button>
+					Submit!
+				</button>
 			</div>
+			<ul id="tabs">
+				<li id="tab-3">
+					Raw Test
+				</li>
+				<li id="tab-2">
+					SpeedTest
+				</li>
+				<li id="tab-1"class="selected">
+					Bittorrent
+				</li>
+			</ul>
 		</div>
-		<div id="grapharea" class="wbackground">
-			<svg width="700" height="500">
-				<g class="background">
-					<rect x="20" y="20" width="660" height="460" fill="white"></rect>
-					<text text-anchor="middle" x="60" y="230" transform="rotate(-90,60,230)">
-						Goodput (Kbit/s)
-					</text>
-					<g class="legend">
-						<circle class="download" r="5" cx="650" cy="40"></circle>
-						<text text-anchor="middle" x="780" y="60" transform=" scale(0.7)"> Download </text>
-						<line class="download" x1="600" x2="645" y1="40" y2="40"></line>
-					    <circle class="upload" r="5" cx="650" cy="60"></circle>
-					    <line class="upload" x1="600" x2="645" y1="60" y2="60"></line>
-					    <text text-anchor="middle" x="780" y="90" transform=" scale(0.7)"> Upload </text>
+		<div id="container">
+			<div id="grapharea-1" class="wbackground">
+				<svg width="700" height="500">
+					<g class="background">
+						<rect x="20" y="20" width="660" height="460"
+						fill="white"></rect>
+						<text text-anchor="middle" x="60" y="210"
+						transform="rotate(-90,60,230)">
+							Goodput (Kbit/s)
+						</text>
+						<g class="legend">
+							<circle class="download" r="5" cx="650" cy="40">
+						
+							</circle>
+							<text text-anchor="middle" x="780" y="60"
+							transform=" scale(0.7)">
+								Download
+							</text>
+							<line class="download" x1="600" x2="645"
+							y1="40" y2="40"></line>
+							<circle class="upload" r="5" cx="650" cy="60">
+							
+							</circle>
+							<line class="upload" x1="600" x2="645" y1="60" y2="60">
+							
+							</line>
+							<text text-anchor="middle" x="780" y="90"
+							transform=" scale(0.7)">
+								Upload
+							</text>
+						</g>
+						<g class="refresh-1" transform="translate(100,80)"></g>
 					</g>
-					<g class="refresh" transform="translate(100,80)"></g>
-				</g>
-			</svg>
+				</svg>
+			</div>
+			<div id="grapharea-2" class="wbackground">
+				<svg width="700" height="500">
+					<g class="background">
+						<rect x="20" y="20" width="660" height="460"
+						fill="white"></rect>
+						<text text-anchor="middle" x="60" y="210"
+						transform="rotate(-90,60,230)">
+							Goodput (Kbit/s)
+						</text>
+						<g class="legend">
+							<circle class="download" r="5" cx="650" cy="40">
+						
+							</circle>
+							<text text-anchor="middle" x="780" y="60"
+							transform=" scale(0.7)">
+								Download
+							</text>
+							<line class="download" x1="600" x2="645"
+							y1="40" y2="40"></line>
+							<circle class="upload" r="5" cx="650" cy="60">
+						
+							</circle>
+							<line class="upload" x1="600" x2="645" y1="60" y2="60">
+							
+							</line>
+							<text text-anchor="middle" x="780" y="90"
+							transform=" scale(0.7)">
+								Upload
+							</text>
+						</g>
+						<g class="refresh-1" transform="translate(100,80)"></g>
+					</g>
+				</svg>
+			</div>
+			<div id="grapharea-3" class="wbackground">
+				<svg width="700" height="500">
+					<g class="background">
+						<rect x="20" y="20" width="660" height="460"
+						fill="white"></rect>
+						<text text-anchor="middle" x="60" y="210"
+						transform="rotate(-90,60,230)">
+							Goodput (Kbit/s)
+						</text>
+						<g class="legend">
+							<circle class="download" r="5" cx="650" cy="40"></circle>
+							<text text-anchor="middle" x="780" y="60"
+							transform=" scale(0.7)">
+								Download
+							</text>
+							<line class="download" x1="600" x2="645"
+							y1="40" y2="40"></line>
+							<circle class="upload" r="5" cx="650" cy="60">
+						
+							</circle>
+							<line class="upload" x1="600" x2="645" y1="60" y2="60">
+							
+							</line>
+							<text text-anchor="middle" x="780" y="90"
+							transform=" scale(0.7)">
+								Upload
+							</text>
+						</g>
+						<g class="refresh-1" transform="translate(100,80)"></g>
+					</g>
+				</svg>
+			</div>
+
 		</div>
-		<script type="text/javascript" src="Js/linechart.js"></script>
+		<script type="text/javascript">
+            $('#container').addClass('js');
+
+            $("#tabs li").each(function() {
+                $(this).click(function() {
+                    var tabId = $(this).attr('id');
+                    var tabId = tabId.split('-');
+                    var tabContent = document.getElementById('grapharea-' + tabId[1]);
+                    tabContent.style.display = 'block';
+                    $(this).addClass('selected');
+                    $(this).siblings().removeClass('selected');
+                    $(tabContent).siblings().css('display', 'none');
+                });
+            });
+		</script>
+		<script type="text/javascript" src="js/linechart.js"></script>
 	</body>
 </html>

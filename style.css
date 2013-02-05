@@ -55,16 +55,30 @@ h3 {
 	border-bottom:none;
 }
 
-#grapharea {
+
+#grapharea-1 ,
+#grapharea-2 ,
+#grapharea-3  
+{
 	height: 500px;
-	border-top:none;
 	margin-top:none;
+	border-top:none;
+	background-color: rgb(150,192,201);
+}
+
+#grapharea-2,
+#grapharea-3{
+	display:none;
 }
 
 input{
 	width:120px;
 	float:right;
 	display:inline;
+}
+
+.errorinput{
+	border:2px solid red;
 }
 
 #fields{
@@ -74,6 +88,8 @@ input{
 	border: 1px solid blue;
 	display:inline-block;
 }
+
+
 
 span {
 	display:block;
@@ -95,6 +111,47 @@ button{
    -moz-border-radius: 5px;
     border-radius: 5px;
 	}
+
+
+#tabs {
+	 margin: 0;
+	 padding: 0;
+	 list-style-type: none;
+	 overflow: hidden;
+	 margin-right:30px;
+}
+
+#tabs li {
+	 cursor: pointer;
+	 float: right;
+	 padding: 5px;
+	 background: #EFEFEF;
+	 margin-bottom: none;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	 border-top-left-radius: 10px;
+	 border-top-right-radius: 10px; 
+	 margin-bottom:0px;
+	 border:1px solid grey;
+	 border-bottom: none;
+ }
+#tabs li.selected {
+	background-color: rgb(150,192,201);
+	}
+
+#tabs-content { clear: both; }
+
+#tabs-content.js > div { display: none; }
+
+#tabs-content.js > #tab-content-1 { display: block; }
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
 
 
 /* gestione stile elementi svg
