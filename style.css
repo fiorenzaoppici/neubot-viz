@@ -90,6 +90,20 @@ input{
 }
 
 
+input{
+	width:120px;
+	float:right;
+	display:inline;
+}
+
+#fields{
+    width:300px;
+	margin-left: 200px;
+	margin-top:50px;
+	border: 1px solid blue;
+	display:inline-block;
+}
+
 
 span {
 	display:block;
@@ -110,7 +124,7 @@ button{
 	-webkit-border-radius: 5px;
    -moz-border-radius: 5px;
     border-radius: 5px;
-	}
+}
 
 
 #tabs {
@@ -152,6 +166,7 @@ button{
   fill-opacity: .125;
   shape-rendering: crispEdges;
 }
+
 
 
 /* gestione stile elementi svg
