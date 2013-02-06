@@ -17,7 +17,6 @@
  *
  *
  */
-var svg = d3.select("svg");
 var margin = 80;
 w = 700 - (2 * margin), h = 500 - (2 * margin);
 //var lOffset = 20;
@@ -37,15 +36,15 @@ var index = 2;
 var nest = [];
 
 // timespan placeholder
-var beginning = "";
-var ending = "";
+var beginningSp = "";
+var endingSp = "";
 
 var select = d3.select("select");
 var defaultab = d3.select("#tab-1");
 
 //reset all values
-startDate.value = beginning;
-endDate.value = ending;
+startDate.value = beginningSp;
+endDate.value = endingSp;
 selector.value = 0;
 startDate.setAttribute("class", "");
 endDate.setAttribute("class", "");
@@ -55,11 +54,11 @@ defaultab.attr("class", "selected");
 format1 = d3.time.format("%Y-%m-%d %H").parse;
 format2 = d3.time.format("%Y-%m-%d").parse;
 
-var xScale = d3.time.scale()
-				.domain([format1(beginning), format1(ending)])
+var xScaleSp = d3.time.scale()
+				.domain([format1(beginningSp), format1(endingSp)])
 				.range([0, w]);
 
-var yScale = d3.scale.linear().range([h, 0]);
+var yScaleSp = d3.scale.linear().range([h, 0]);
 
 var svg2 = d3.select(".refresh-1");
 
@@ -67,49 +66,49 @@ var svg2 = d3.select(".refresh-1");
 //x is the aggregator (a time value)
 //y is the corresponding average download speed
 
-var lineD = d3.svg.line().x(function(d) {
-	return (xScale(d.values.date))
+var lineDSp = d3.svg.line().x(function(d) {
+	return (xScaleSp(d.values.date))
 }).y(function(d) {
-	return yScale(d.values.avgD * 8 / 1000)
+	return yScaleSp(d.values.avgD * 8 / 1000)
 });
 
 //plots function given an array of objects(points)
 //x is the aggregator (a time value)
 //y is the corresponding average upload speed
 
-var lineU = d3.svg.line().x(function(d) {
-	return (xScale(d.values.date))
+var lineUSp = d3.svg.line().x(function(d) {
+	return (xScaleSp(d.values.date))
 }).y(function(d) {
-	return yScale(d.values.avgU * 8 / 1000)
+	return yScaleSp(d.values.avgU * 8 / 1000)
 });
 
 //adds svg circle elements for every point
 // depending on the parameter toggle, it can represent
 // upload or download data.
 
-var drawCircles = function(toggle) {
-
+var drawCirclesSp = function(toggle) {
+	alert("ciao sono il drawcircles di speedtest");
 	var circles = svg2.selectAll("circle." + toggle).data(nest);
 	circles.enter()
 			.append("circle")
 			.attr("r", 5)
 			.attr("class", toggle)
 			.attr("cx", function(d) {
-		return (xScale(d.values.date));
+		return (xScaleSp(d.values.date));
 	})
 	if (toggle == "download")
 		circles.attr("cy", function(d) {
-			return yScale((d.values.avgD * 8 ) / 1000)
+			return yScaleSp((d.values.avgD * 8 ) / 1000)
 		});
 	else
 		circles.attr("cy", function(d) {
-			return yScale((d.values.avgU * 8) / 1000)
+			return yScaleSp((d.values.avgU * 8) / 1000)
 		});
 	circles.exit().remove();
 }
 //add axes according to the current range of values
 // and time
-var addAxes = function() {
+var addAxesSp = function() {
 	var scaleEnds = [d3.max(nest, function(d) {
 		return d.values.avgD
 	}), d3.max(nest, function(d) {
@@ -118,22 +117,22 @@ var addAxes = function() {
 
 	var end = ((d3.max(scaleEnds)) * 8 ) / 1000;
 
-	yScale.domain([0, end]);
-	xScale.domain([format1(beginning), format1(ending)])
+	yScaleSp.domain([0, end]);
+	xScaleSp.domain([format1(beginningSp), format1(endingSp)])
 
 	var xAxis = d3.svg.axis()
-						.scale(xScale)
+						.scale(xScaleSp)
 						.orient("bottom");
 
-	var yAxis = d3.svg.axis().scale(yScale).orient("left");
+	var yAxis = d3.svg.axis().scale(yScaleSp).orient("left");
 	svg2.append("g")
 		.attr("class", "axis")
 		.attr("transform", "translate(0," + h + ")")
 		.call(xAxis);
 
 	if (nest.length == 1) {
-		yScale.domain([0, end * 2]);
-		yAxis.scale(yScale)
+		yScaleSp.domain([0, end * 2]);
+		yAxis.scale(yScaleSp)
 	}
 
 	svg2.append("g").attr("class", "axis")
@@ -143,14 +142,14 @@ var addAxes = function() {
 }
 //adds reference lines according to the aggregation level.
 
-var addLines = function() {
+var addLinesSp = function() {
 	var xlines = svg2.selectAll("line.y")
-						.data(yScale.ticks(10));
+						.data(yScaleSp.ticks(10));
 	xlines.enter()
 			.append("line")
 			.attr("class", "y")
-			.attr("y1", yScale)
-			.attr("y2", yScale)
+			.attr("y1", yScaleSp)
+			.attr("y2", yScaleSp)
 			.attr("x1", 0)
 			.attr("x2", w)
 			.style("stroke", "#ccc");
@@ -158,11 +157,11 @@ var addLines = function() {
 	xlines.exit().remove();
 
 	var ylines = svg2.selectAll("line.x")
-						.data(xScale.ticks(d3.time.days, 1));
+						.data(xScaleSp.ticks(d3.time.days, 1));
 	ylines.enter().append("line")
 					.attr("class", "x")
-					.attr("x1", xScale)
-					.attr("x2", xScale)
+					.attr("x1", xScaleSp)
+					.attr("x2", xScaleSp)
 					.attr("y1", 0)
 					.attr("y2", h)
 					.style("stroke", "#ccc");
@@ -171,11 +170,11 @@ var addLines = function() {
 
 }
 //json processing
-var callback = function(array) {
-
-	if (beginning != "" && ending != "") {
-		var s = format1(beginning);
-		var e = format1(ending);
+var callbackSp = function(array) {
+alert("ciao sono il cb di speedtest");
+	if (beginningSp != "" && endingSp != "") {
+		var s = format1(beginningSp);
+		var e = format1(endingSp);
 
 		//filters all records that fit the interval
 		function checkSpan(element, index, array) {
@@ -204,23 +203,23 @@ var callback = function(array) {
 
 	});
 
-	if (beginning == "" && ending == "") {
+	if (beginningSp == "" && endingSp == "") {
 
 		s = d3.min(array, function(d) {
 			return d.date
 		});
 
-		beginning = s.getFullYear() + "-" + (s.getMonth() + 1) + "-" + 
+		beginningSp = s.getFullYear() + "-" + (s.getMonth() + 1) + "-" + 
 					s.getDate() + " " + s.getHours();
 
 		e = d3.max(array, function(d) {
 			return d.date
 		})
-		ending = e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + 
+		endingSp = e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + 
 				e.getDate() + " " + e.getHours();
 
-		startDate.value = beginning;
-		endDate.value = ending;
+		startDate.value = beginningSp;
+		endDate.value = endingSp;
 	}
 
 	nest = [];
@@ -294,16 +293,16 @@ var callback = function(array) {
 	nest.sort(function(a, b) {
 		return a.values.date - b.values.date;
 	})
-	addAxes();
-	addLines();
+	addAxesSp();
+	addLinesSp();
 
 	if (nest.length != 1) {
-		svg2.append("svg:path").attr("d", lineU(nest)).classed("upload", true);
-		svg2.append("svg:path").attr("d", lineD(nest)).classed("download", true);
+		svg2.append("svg:path").attr("d", lineUSp(nest)).classed("upload", true);
+		svg2.append("svg:path").attr("d", lineDSp(nest)).classed("download", true);
 	}
 
-	drawCircles("upload");
-	drawCircles("download");
+	drawCirclesSp("upload");
+	drawCirclesSp("download");
 
 	var up = d3.selectAll(".upload");
 	var down = d3.selectAll(".download");
@@ -330,26 +329,26 @@ var callback = function(array) {
 }
 //removes all variable graphic elements and
 //calls again for data.
-var refresh = function() {
+var refreshSp = function() {
 	svg2.selectAll(".upload").remove();
 	svg2.selectAll(".download").remove();
 	svg2.selectAll(".axis").remove();
-	svg2.selectAll("path").remove();
 	svg2.selectAll(".x").remove();
 	svg2.selectAll(".y").remove();
-	d3.json("data/data_bittorrent_2.json", callback);
+	d3.json("data/data_speedtest_2.json", callbackSp);
 }
 var startDate = document.getElementById('startDate');
 var endDate = document.getElementById('endDate');
 var submit = d3.select("button");
 
-var wintorrent = d3.json("data/data_bittorrent_2.json", callback);
+var speedtest = d3.json("data/data_speedtest_2.json", callbackSp);
 
 //updates the index value and the view accordingly
-select.on("change", function() {
-	index = this.value;
-	refresh();
-});
+var selectIndexSp = function(object) {
+	alert("ciao sono Speedtest");
+	index = object.value;
+	refreshSp();
+};
 
 //checks user input for the parameter "start date"
 var checkStart = function() {

@@ -11,8 +11,7 @@
 	</head>
 	<body>
 		<div id="parameters" class="wbackground">
-			<h3></h3>
-			<select id="timebasis" class="selectior">
+			<select id="timebasis" class="selectior" onchange="selectIndexSp(this);selectIndexBt(this)">
 				<option value="2" selected> days <option value="1"> hours 
 				<option value="3"> months
 			</select>
@@ -33,16 +32,16 @@
 					Raw Test
 				</li>
 				<li id="tab-2">
-					SpeedTest
+					Bittorrent
 				</li>
 				<li id="tab-1"class="selected">
-					Bittorrent
+					Speedtest
 				</li>
 			</ul>
 		</div>
 		<div id="container">
 			<div id="grapharea-1" class="wbackground">
-				<svg width="700" height="500">
+				<svg id="1"width="700" height="500">
 					<g class="background">
 						<rect x="20" y="20" width="660" height="460"
 						fill="white"></rect>
@@ -76,7 +75,7 @@
 				</svg>
 			</div>
 			<div id="grapharea-2" class="wbackground">
-				<svg width="700" height="500">
+				<svg id="2" width="700" height="500">
 					<g class="background">
 						<rect x="20" y="20" width="660" height="460"
 						fill="white"></rect>
@@ -105,7 +104,7 @@
 								Upload
 							</text>
 						</g>
-						<g class="refresh-1" transform="translate(100,80)"></g>
+						<g class="refresh-2" transform="translate(100,80)"></g>
 					</g>
 				</svg>
 			</div>
@@ -137,7 +136,7 @@
 								Upload
 							</text>
 						</g>
-						<g class="refresh-1" transform="translate(100,80)"></g>
+						<g class="refresh-3" transform="translate(100,80)"></g>
 					</g>
 				</svg>
 			</div>
@@ -157,7 +156,7 @@
                 });
             });
 		</script>
+		<script type="text/javascript" src="js/linechart_speedtest.js"></script>
 		<script type="text/javascript" src="js/linechart_bittorrent.js"></script>
-
 	</body>
 </html>
