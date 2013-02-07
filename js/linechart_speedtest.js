@@ -21,10 +21,6 @@ var margin = 80;
 w = 700 - (2 * margin), h = 500 - (2 * margin);
 //var lOffset = 20;
 
-var startDate = document.getElementById('startDate');
-var endDate = document.getElementById('endDate');
-var selector = document.getElementById('timebasis');
-
 /*   index represents the current aggregation level
  *   it's updated via the select element in the html.
  *   0: dd-mm-YYYY
@@ -42,13 +38,6 @@ var endingSp = "";
 var select = d3.select("select");
 var defaultab = d3.select("#tab-1");
 
-//reset all values
-startDate.value = beginningSp;
-endDate.value = endingSp;
-selector.value = 0;
-startDate.setAttribute("class", "");
-endDate.setAttribute("class", "");
-defaultab.attr("class", "selected");
 
 // D3 formatters for different aggregation levels:
 format1 = d3.time.format("%Y-%m-%d %H").parse;
@@ -87,7 +76,6 @@ var lineUSp = d3.svg.line().x(function(d) {
 // upload or download data.
 
 var drawCirclesSp = function(toggle) {
-	alert("ciao sono il drawcircles di speedtest");
 	var circles = svg2.selectAll("circle." + toggle).data(nest);
 	circles.enter()
 			.append("circle")
@@ -171,7 +159,7 @@ var addLinesSp = function() {
 }
 //json processing
 var callbackSp = function(array) {
-alert("ciao sono il cb di speedtest");
+	alert("ciaooSP");
 	if (beginningSp != "" && endingSp != "") {
 		var s = format1(beginningSp);
 		var e = format1(endingSp);
@@ -217,9 +205,6 @@ alert("ciao sono il cb di speedtest");
 		})
 		endingSp = e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + 
 				e.getDate() + " " + e.getHours();
-
-		startDate.value = beginningSp;
-		endDate.value = endingSp;
 	}
 
 	nest = [];
@@ -337,73 +322,22 @@ var refreshSp = function() {
 	svg2.selectAll(".y").remove();
 	d3.json("data/data_speedtest_2.json", callbackSp);
 }
-var startDate = document.getElementById('startDate');
-var endDate = document.getElementById('endDate');
-var submit = d3.select("button");
+var setBeginningSp=function(string){
+	beginningSp = string;
+}
 
-var speedtest = d3.json("data/data_speedtest_2.json", callbackSp);
+var setEndingSp=function(string){
+	endingSp = string;
+}
+
+var sp=d3.json("data/data_speedtest_2.json", callbackSp);
 
 //updates the index value and the view accordingly
 var selectIndexSp = function(object) {
-	alert("ciao sono Speedtest");
 	index = object.value;
 	refreshSp();
 };
 
-//checks user input for the parameter "start date"
-var checkStart = function() {
-
-	var errorMsg = "";
-
-	if (startDate.value == "") {
-		errorMsg = "Start date not specified";
-	} else if ((format2(startDate.value)) == null) {
-		errorMsg = " Invalid date format!";
-	} else if (format2(startDate.value) != null) {
-		startDate.setAttribute("class", "");
-		return true
-	}
-
-	if (errorMsg != "") {
-		startDate.setAttribute("class", "errorinput");
-		alert(errorMsg);
-		return false
-	}
-
-};
-
-//checks user input for the parameter "end date"
-var checkEnd = function() {
-
-	var errorMsg = "";
-	if (endDate.value == "") {
-		errorMsg = "End date not specified";
-	} else if ((format2(endDate.value)) == null) {
-		errorMsg = " Invalid date format!";
-	} else if (format2(endDate.value) != null) {
-
-		endDate.setAttribute("class", "");
-		return true
-	}
-
-	if (errorMsg != "") {
-		endDate.setAttribute("class", "errorinput");
-		alert(errorMsg);
-		return false
-	}
-
-};
-
-//when one hits submit... call again data and refresh view.
-submit.on("click", function() {
-	if (checkStart() && checkEnd()) {
-
-		beginning = startDate.value + " 00";
-		ending = endDate.value + " 23";
-
-		refresh();
-	}
-})
 var brush = d3.svg.brush()
 				.x(d3.scale.identity().domain([0, w]))
 				.y(d3.scale.identity().domain([0, h]))

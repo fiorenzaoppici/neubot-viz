@@ -21,10 +21,6 @@ var margin = 80;
 w = 700 - (2 * margin), h = 500 - (2 * margin);
 //var lOffset = 20;
 
-var startDate = document.getElementById('startDate');
-var endDate = document.getElementById('endDate');
-var selector = document.getElementById('timebasis');
-
 /*   index represents the current aggregation level
  *   it's updated via the select element in the html.
  *   0: dd-mm-YYYY
@@ -42,17 +38,10 @@ var ending = "";
 var select = d3.select("select");
 var defaultab = d3.select("#tab-1");
 
-//reset all values
-startDate.value = beginning;
-endDate.value = ending;
-selector.value = 0;
-startDate.setAttribute("class", "");
-endDate.setAttribute("class", "");
-defaultab.attr("class", "selected");
 
 // D3 formatters for different aggregation levels:
-format1 = d3.time.format("%Y-%m-%d %H").parse;
-format2 = d3.time.format("%Y-%m-%d").parse;
+var format1 = d3.time.format("%Y-%m-%d %H").parse;
+var format2 = d3.time.format("%Y-%m-%d").parse;
 
 var xScale = d3.time.scale()
 				.domain([format1(beginning), format1(ending)])
@@ -171,7 +160,7 @@ var addLines = function() {
 }
 //json processing
 var callback = function(array) {
-	alert("ciao sono il cb di Bittorrent");
+	alert ("ciaoooBt!");
 	if (beginning != "" && ending != "") {
 		var s = format1(beginning);
 		var e = format1(ending);
@@ -217,9 +206,6 @@ var callback = function(array) {
 		})
 		ending = e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + 
 				e.getDate() + " " + e.getHours();
-
-		startDate.value = beginning;
-		endDate.value = ending;
 	}
 
 	nestBt = [];
@@ -338,74 +324,28 @@ var refreshBt = function() {
 	svgBt.selectAll(".y").remove();
 	d3.json("data/data_bittorrent_2.json", callback);
 }
-var startDate = document.getElementById('startDate');
-var endDate = document.getElementById('endDate');
-var submit = d3.select("button");
 
-var torrent = d3.json("data/data_bittorrent_2.json", callback);
+var setBeginningBt=function(string){
+	alert(string);
+	beginning = string;
+}
+
+var setEndingBt=function(string){
+	alert(string);
+	ending = string;
+}
+
+var bt=d3.json("data/data_bittorrent_2.json", callback);
 
 //updates the index value and the view accordingly
 var selectIndexBt = function(object) {
-	alert("ciao sono Bittorrent");
 	index = object.value;
+	alert (index);
 	refreshBt();
 };
 
 
-//checks user input for the parameter "start date"
-var checkStart = function() {
 
-	var errorMsg = "";
-
-	if (startDate.value == "") {
-		errorMsg = "Start date not specified";
-	} else if ((format2(startDate.value)) == null) {
-		errorMsg = " Invalid date format!";
-	} else if (format2(startDate.value) != null) {
-		startDate.setAttribute("class", "");
-		return true
-	}
-
-	if (errorMsg != "") {
-		startDate.setAttribute("class", "errorinput");
-		alert(errorMsg);
-		return false
-	}
-
-};
-
-//checks user input for the parameter "end date"
-var checkEnd = function() {
-
-	var errorMsg = "";
-	if (endDate.value == "") {
-		errorMsg = "End date not specified";
-	} else if ((format2(endDate.value)) == null) {
-		errorMsg = " Invalid date format!";
-	} else if (format2(endDate.value) != null) {
-
-		endDate.setAttribute("class", "");
-		return true
-	}
-
-	if (errorMsg != "") {
-		endDate.setAttribute("class", "errorinput");
-		alert(errorMsg);
-		return false
-	}
-
-};
-
-//when one hits submit... call again data and refresh view.
-submit.on("click", function() {
-	if (checkStart() && checkEnd()) {
-
-		beginning = startDate.value + " 00";
-		ending = endDate.value + " 23";
-
-		refresh1();
-	}
-})
 var brush = d3.svg.brush()
 				.x(d3.scale.identity().domain([0, w]))
 				.y(d3.scale.identity().domain([0, h]))

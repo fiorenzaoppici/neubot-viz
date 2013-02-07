@@ -11,7 +11,8 @@
 	</head>
 	<body>
 		<div id="parameters" class="wbackground">
-			<select id="timebasis" class="selectior" onchange="selectIndexSp(this);selectIndexBt(this)">
+		<h3></h3>
+			<select id="timebasis" class="selector">
 				<option value="2" selected> days <option value="1"> hours 
 				<option value="3"> months
 			</select>
@@ -156,7 +157,92 @@
                 });
             });
 		</script>
+
 		<script type="text/javascript" src="js/linechart_speedtest.js"></script>
 		<script type="text/javascript" src="js/linechart_bittorrent.js"></script>
+		<script type="text/javascript">
+		alert("miononnno");
+		      
+    var submit=d3.select("button");
+    var startDate=d3.select("#startDate");
+    var endDate=d3.select("#endDate");
+    var selector=d3.select("#timebasis");
+    var defaultab = d3.select("#tab-1");
+    
+    format2 = d3.time.format("%Y-%m-%d").parse;
+    
+     
+    //d3.selectAll("input").property("value","");
+    d3.selectAll("input").attr("class","");
+    selector.attr("value",0);
+
+    defaultab.attr("class", "selected");
+		      var checkStart = function() {
+
+    
+    var errorMsg = "";
+    alert(startDate.property("value"));
+    if (startDate.value == "") {
+        errorMsg = "Start date not specified";
+    } else if ((format2(startDate.property("value"))) == null) {
+        errorMsg = " Invalid date format!";
+    } else if (format2(startDate.property("value")) != null) {
+        startDate.attr("class", "");
+        return true
+    }
+
+    if (errorMsg != "") {
+        startDate.attr("class", "errorinput");
+        alert(errorMsg);
+        return false
+    }
+
+};
+
+//checks user input for the parameter "end date"
+var checkEnd = function() {
+
+    var errorMsg = "";
+    if (endDate.property("value") == "") {
+        errorMsg = "End date not specified";
+    } else if ((format2(endDate.property("value"))) == null) {
+        errorMsg = " Invalid date format!";
+    } else if (format2(endDate.property("value")) != null) {
+
+        endDate.attr("class", "");
+        return true
+    }
+
+    if (errorMsg != "") {
+        endDate.attr("class", "errorinput");
+        alert(errorMsg);
+        return false
+    }
+
+};
+
+
+d3.select("#timebasis")
+    .on("change.sp", function() { selectIndexSp(this); })
+    .on("change.bt", function() { selectIndexBt(this); });
+    
+submit.on("click.sp", function() {
+    if (checkStart() && checkEnd()) {
+
+        setBeginningSp(startDate.property("value")+ " 00");
+        setEndingSp (endDate.property("value")+ " 23");
+        refreshSp();
+    }
+});
+submit.on("click.bt", function() {
+    if (checkStart() && checkEnd()) {
+
+        setBeginningBt(startDate.property("value") + " 00");
+        setEndingBt(endDate.property("value") + " 23");
+        refreshBt();
+    }
+})
+    
+        </script>
 	</body>
 </html>
