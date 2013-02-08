@@ -144,16 +144,16 @@
 
 		</div>
 		<script type="text/javascript">
-            $('#container').addClass('js');
-            $("#tabs li").each(function() {
-                $(this).click(function() {
-                    var tabId = $(this).attr('id');
+            jQuery.('#container').addClass('js');
+            jQuery.("#tabs li").each(function() {
+                jQuery(this).click(function() {
+                    var tabId = jQuery.(this).attr('id');
                     var tabId = tabId.split('-');
                     var tabContent = document.getElementById('grapharea-' + tabId[1]);
                     tabContent.style.display = 'block';
-                    $(this).addClass('selected');
-                    $(this).siblings().removeClass('selected');
-                    $(tabContent).siblings().css('display', 'none');
+                    jQuery.(this).addClass('selected');
+                    jQuery.(this).siblings().removeClass('selected');
+                    jQuery.(tabContent).siblings().css('display', 'none');
                 });
             });
 		</script>
@@ -228,6 +228,8 @@ d3.select("#timebasis")
     
 submit.on("click.sp", function() {
     if (checkStart() && checkEnd()) {
+        
+
 
         setBeginningSp(startDate.property("value")+ " 00");
         setEndingSp (endDate.property("value")+ " 23");
