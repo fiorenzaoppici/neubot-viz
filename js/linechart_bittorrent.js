@@ -1,69 +1,55 @@
 /*
  *
- *  NEUBOT  0.0.1
- *  code by F.Oppici
- *  this script relies on the d3 framework for representing Neubot data
- *
  *
  * TODO:
- *
- *
- *
- *       scale dots accordingly to the desired timespan
- *
- *       don't cram the graph with reference lines (hours visualization)
- *
+ * cose da fare: fare visualizzazione con vettore  V
+ * evitare di eliminare gli elementi grafici se non ci sono grafici disponibili V
+ * controllare se start < end e in tal caso segnalarlo
+ * evitare gli alert di default
+ * definire una label per ogni punto
+ * ----------------------------------------------
+ * grafica: 
  *
  *
  *
  */
-var margin = 80;
-w = 700 - (2 * margin), h = 500 - (2 * margin);
-//var lOffset = 20;
+
+var bittorrent=(function() {
+	
+	var same={};
+	var margin = 80;
+	var beginning = "";
+	var ending = "";
+	
+	w = 700 - (2 * margin), h = 500 - (2 * margin);
+	var format1 = d3.time.format("%Y-%m-%d %H").parse;
+	var format2 = d3.time.format("%Y-%m-%d").parse;
+	
+	var xScale = d3.time.scale()
+				.domain([format1(beginning), format1(ending)])
+				.range([0, w]);
+	var yScale = d3.scale.linear().range([h, 0]);
+
+	var svg = d3.select(".refresh-2");
 
 /*   index represents the current aggregation level
  *   it's updated via the select element in the html.
- *   0: dd-mm-YYYY
- *   -1: mm-YYYY
+ *   2: dd-mm-YYYY
+ *   3: mm-YYYY
  *   1: dd-mm-YYYY HH
- */
-var index = 2;
+  */
+	var index = 2;
 
-var nestBt = [];
+	var nest = [];
 
 // timespan placeholder
-var beginning = "";
-var ending = "";
 
-var select = d3.select("select");
-var defaultab = d3.select("#tab-1");
-
-
-// D3 formatters for different aggregation levels:
-var format1 = d3.time.format("%Y-%m-%d %H").parse;
-var format2 = d3.time.format("%Y-%m-%d").parse;
-
-var xScale = d3.time.scale()
-				.domain([format1(beginning), format1(ending)])
-				.range([0, w]);
-
-var yScale = d3.scale.linear().range([h, 0]);
-
-var svgBt = d3.select(".refresh-2");
-
-//plots a line graph given an array of objects(points)
-//x is the aggregator (a time value)
-//y is the corresponding average download speed
-
+	
 var lineD = d3.svg.line().x(function(d) {
 	return (xScale(d.values.date))
 }).y(function(d) {
 	return yScale(d.values.avgD * 8 / 1000)
 });
-
-//plots function given an array of objects(points)
-//x is the aggregator (a time value)
-//y is the corresponding average upload speed
 
 var lineU = d3.svg.line().x(function(d) {
 	return (xScale(d.values.date))
@@ -77,7 +63,7 @@ var lineU = d3.svg.line().x(function(d) {
 
 var drawCircles = function(toggle) {
 
-	var circles = svgBt.selectAll("circle." + toggle).data(nestBt);
+	var circles = svg.selectAll("circle." + toggle).data(nest);
 	circles.enter()
 			.append("circle")
 			.attr("r", 5)
@@ -98,9 +84,9 @@ var drawCircles = function(toggle) {
 //add axes according to the current range of values
 // and time
 var addAxes = function() {
-	var scaleEnds = [d3.max(nestBt, function(d) {
+	var scaleEnds = [d3.max(nest, function(d) {
 		return d.values.avgD
-	}), d3.max(nestBt, function(d) {
+	}), d3.max(nest, function(d) {
 		return d.values.avgU
 	})];
 
@@ -114,17 +100,17 @@ var addAxes = function() {
 						.orient("bottom");
 
 	var yAxis = d3.svg.axis().scale(yScale).orient("left");
-	svgBt.append("g")
+	svg.append("g")
 		.attr("class", "axis")
 		.attr("transform", "translate(0," + h + ")")
 		.call(xAxis);
 
-	if (nestBt.length == 1) {
+	if (nest.length == 1) {
 		yScale.domain([0, end * 2]);
 		yAxis.scale(yScale)
 	}
 
-	svgBt.append("g").attr("class", "axis")
+	svg.append("g").attr("class", "axis")
 	//		.attr("transform", "translate(20,0)")
 	.call(yAxis);
 
@@ -132,7 +118,7 @@ var addAxes = function() {
 //adds reference lines according to the aggregation level.
 
 var addLines = function() {
-	var xlines = svgBt.selectAll("line.y")
+	var xlines = svg.selectAll("line.y")
 						.data(yScale.ticks(10));
 	xlines.enter()
 			.append("line")
@@ -145,7 +131,7 @@ var addLines = function() {
 
 	xlines.exit().remove();
 
-	var ylines = svgBt.selectAll("line.x")
+	var ylines = svg.selectAll("line.x")
 						.data(xScale.ticks(d3.time.days, 1));
 	ylines.enter().append("line")
 					.attr("class", "x")
@@ -159,21 +145,19 @@ var addLines = function() {
 
 }
 //json processing
-var callback = function(array) {
-	if (beginning != "" && ending != "") {
+same.callback = function(array) {
+		if (beginning != "" && ending != "") {
 		var s = format1(beginning);
 		var e = format1(ending);
 
 		//filters all records that fit the interval
 		function checkSpan(element, index, array) {
-			//alert (new Date(element.timestamp*1000));
 			return (new Date(element.timestamp * 1000) >= s && 
 			new Date(element.timestamp * 1000) <= e)
 		}
 
 		array = array.filter(checkSpan);
 	}
-
 	array.forEach(function(d) {
 
 		var date = new Date(d.timestamp * 1000);
@@ -207,10 +191,10 @@ var callback = function(array) {
 				e.getDate() + " " + e.getHours();
 	}
 
-	nestBt = [];
+	nest = [];
 
 	if (index == 1) {
-		nestBt = d3.nest().key(function(d) {
+		nest = d3.nest().key(function(d) {
 			return d.d1
 		}).rollup(function(leaves) {
 			return {
@@ -230,7 +214,7 @@ var callback = function(array) {
 		}).entries(array);
 
 	} else if (index == 2) {
-		nestBt = d3.nest().key(function(d) {
+		nest = d3.nest().key(function(d) {
 			return d.d2
 		}).rollup(function(leaves) {
 			return {
@@ -250,7 +234,7 @@ var callback = function(array) {
 		}).entries(array);
 
 	} else {
-		nestBt = d3.nest().key(function(d) {
+		nest = d3.nest().key(function(d) {
 			return d.d3
 		}).rollup(function(leaves) {
 			return {
@@ -269,84 +253,55 @@ var callback = function(array) {
 		}).entries(array);
 
 	}
+	alert("nest"+nest);
 
-	if (nestBt.length == 0) {
-		alert("No data available for this timespan");
-		return false;
+	if (nest.length == 0) {
+		alert("No data available from Bittorrent test for this timespan");
+	}else{
+			nest.sort(function(a, b) {
+			return a.values.date - b.values.date;
+	});
+	refresh();
+	drawElements();
 	}
-
-	nestBt.sort(function(a, b) {
-		return a.values.date - b.values.date;
-	})
-	addAxes();
-	addLines();
-
-	if (nestBt.length != 1) {
-		svgBt.append("svg:path").attr("d", lineU(nestBt)).classed("upload", true);
-		svgBt.append("svg:path").attr("d", lineD(nestBt)).classed("download", true);
 	}
-
-         drawCircles("upload");
-         drawCircles("download");
-
-	var up = d3.selectAll(".upload");
-	var down = d3.selectAll(".download");
-
-	//chrome detection
-	//mouseleave is not properly captured in chrome
-
-	if (!window.chrome) {
-		up.on("mouseover", function() {
-			down.attr("opacity", 0)
-		});
-		up.on("mouseleave", function() {
-			down.attr("opacity", 1)
-		});
-
-		down.on("mouseover", function() {
-			up.attr("opacity", 0)
-		});
-		down.on("mouseleave", function() {
-			up.attr("opacity", 1)
-		});
-	}
-	return true;
-}
 //removes all variable graphic elements and
 //calls again for data.
-var refreshBt = function() {
-	svgBt.selectAll(".upload").remove();
-	svgBt.selectAll(".download").remove();
-	svgBt.selectAll(".axis").remove();
-	svgBt.selectAll("path").remove();
-	svgBt.selectAll(".x").remove();
-	svgBt.selectAll(".y").remove();
-	d3.json("data/data_bittorrent_2.json", callback);
+var refresh = function() {
+	svg.selectAll(".upload").remove();
+	svg.selectAll(".download").remove();
+	svg.selectAll(".axis").remove();
+	svg.selectAll("path").remove();
+	svg.selectAll(".x").remove();
+	svg.selectAll(".y").remove();
 }
 
-var setBeginningBt=function(string){
+var drawElements=function(){
+	addAxes();
+	addLines();
+	if (nest.length != 1) {
+		svg.append("svg:path").attr("d", lineU(nest)).classed("upload", true);
+		svg.append("svg:path").attr("d", lineD(nest)).classed("download", true);
+	}
+	drawCircles("upload");
+	drawCircles("download");
+}
+
+same.setBeginning=function(string){
 	beginning = string;
 }
 
-var setEndingBt=function(string){
+same.setEnding=function(string){
 	ending = string;
 }
 
-var bt=d3.json("data/data_bittorrent_2.json", callback);
 
 //updates the index value and the view accordingly
-var selectIndexBt = function(object) {
+same.selectIndex = function(object) {
 	index = object.value;
-	alert (index);
-	refreshBt();
+	d3.json("data/data_bittorrent_2.json", bittorrent.callback);
 };
+return same;
+})();
 
-
-
-var brush = d3.svg.brush()
-				.x(d3.scale.identity().domain([0, w]))
-				.y(d3.scale.identity().domain([0, h]))
-				.on("brush", function(d) {})
-				.extent([[100, 100], [200, 200]]);
-
-svgBt.append("g").attr("class", "brush").call(brush);
+var bt=d3.json("data/data_bittorrent_2.json", function(json){bittorrent.callback(json)});
