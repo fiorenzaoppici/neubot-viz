@@ -253,8 +253,7 @@ same.callback = function(array) {
 		}).entries(array);
 
 	}
-	alert("nest"+nest);
-
+	//alert("nest"+nest);
 	if (nest.length == 0) {
 		alert("No data available from Bittorrent test for this timespan");
 	}else{
@@ -299,7 +298,7 @@ same.setEnding=function(string){
 //updates the index value and the view accordingly
 same.selectIndex = function(object) {
 	index = object.value;
-	d3.json("data/data_bittorrent_2.json", bittorrent.callback);
+	d3.json("data/data_bittorrent_2.json", function(json){bittorrent.callback(json)});
 };
 return same;
 })();

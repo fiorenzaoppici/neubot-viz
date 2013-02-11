@@ -172,7 +172,7 @@
     format2 = d3.time.format("%Y-%m-%d").parse;
     
      
-    //d3.selectAll("input").property("value","");
+    d3.selectAll("input").property("value","");
     d3.selectAll("input").attr("class","");
     selector.attr("value",0);
 
@@ -223,21 +223,23 @@ var checkEnd = function() {
 
 
 d3.select("#timebasis")
-    .on("change.sp", function() {speedtest.selectIndex(this); })
-    .on("change", function() { bittorrent.selectIndex(this); });
+    .on("change.sp", function() {speedtest.selectIndex(this);})
+    .on("change.bt", function() {bittorrent.selectIndex(this);});
     
 submit.on("click.sp", function() {
     if (checkStart() && checkEnd()) {
         speedtest.setBeginning(startDate.property("value")+ " 00");
         speedtest.setEnding(endDate.property("value")+ " 23");
-        var bp=d3.json("data/data_speedtest_2.json", bittorrent.callback());}
+        var bp=d3.json("data/data_speedtest_2.json", function(json){bittorrent.callback(json)});
+        }
 });
+
 submit.on("click.bt", function() {
     if (checkStart()) {
         if(checkEnd()){
         bittorrent.setBeginning(startDate.property("value") + " 00");
         bittorrent.setEnding(endDate.property("value") + " 23");
-        var bt=d3.json("data/data_bittorrent_2.json", bittorrent.callback());
+        var bt=d3.json("data/data_bittorrent_2.json", function(json){ bittorrent.callback(json)});
     }
     }
 })

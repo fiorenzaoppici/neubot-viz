@@ -254,9 +254,9 @@ same.callback = function(array) {
 		}).entries(array);
 
 	}
-
+	//alert("nest"+nest);
 	if (nest.length == 0) {
-		alert("No data available from Bittorrent test for this timespan");
+		alert("No data available from Speedtest test for this timespan");
 	}else{
 			nest.sort(function(a, b) {
 			return a.values.date - b.values.date;
@@ -299,7 +299,7 @@ same.setEnding=function(string){
 //updates the index value and the view accordingly
 same.selectIndex = function(object) {
 	index = object.value;
-	d3.json("data/data_speedtest_2.json", speedtest.callback);
+	d3.json("data/data_speedtest_2.json", function(json){speedtest.callback(json)});
 };
 return same;
 })();
