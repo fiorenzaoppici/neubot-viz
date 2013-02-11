@@ -160,7 +160,6 @@ var addLines = function() {
 }
 //json processing
 var callback = function(array) {
-	alert ("ciaoooBt!");
 	if (beginning != "" && ending != "") {
 		var s = format1(beginning);
 		var e = format1(ending);
@@ -326,12 +325,10 @@ var refreshBt = function() {
 }
 
 var setBeginningBt=function(string){
-	alert(string);
 	beginning = string;
 }
 
 var setEndingBt=function(string){
-	alert(string);
 	ending = string;
 }
 

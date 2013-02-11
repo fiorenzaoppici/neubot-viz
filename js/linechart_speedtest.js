@@ -1,6 +1,6 @@
 /*
  *
- *  NEUBOT  0.0.1
+ *  NEUBOT-VIZ
  *  code by F.Oppici
  *  this script relies on the d3 framework for representing Neubot data
  *
@@ -159,7 +159,6 @@ var addLinesSp = function() {
 }
 //json processing
 var callbackSp = function(array) {
-	alert("ciaooSP");
 	if (beginningSp != "" && endingSp != "") {
 		var s = format1(beginningSp);
 		var e = format1(endingSp);

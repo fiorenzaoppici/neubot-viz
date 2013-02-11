@@ -144,16 +144,16 @@
 
 		</div>
 		<script type="text/javascript">
-            jQuery.('#container').addClass('js');
-            jQuery.("#tabs li").each(function() {
+            jQuery('#container').addClass('js');
+            jQuery("#tabs li").each(function() {
                 jQuery(this).click(function() {
-                    var tabId = jQuery.(this).attr('id');
+                    var tabId = jQuery(this).attr('id');
                     var tabId = tabId.split('-');
                     var tabContent = document.getElementById('grapharea-' + tabId[1]);
                     tabContent.style.display = 'block';
-                    jQuery.(this).addClass('selected');
-                    jQuery.(this).siblings().removeClass('selected');
-                    jQuery.(tabContent).siblings().css('display', 'none');
+                    jQuery(this).addClass('selected');
+                    jQuery(this).siblings().removeClass('selected');
+                    jQuery(tabContent).siblings().css('display', 'none');
                 });
             });
 		</script>
@@ -161,7 +161,6 @@
 		<script type="text/javascript" src="js/linechart_speedtest.js"></script>
 		<script type="text/javascript" src="js/linechart_bittorrent.js"></script>
 		<script type="text/javascript">
-		alert("miononnno");
 		      
     var submit=d3.select("button");
     var startDate=d3.select("#startDate");
