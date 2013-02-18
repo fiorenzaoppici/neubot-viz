@@ -80,6 +80,29 @@ var drawCircles = function(toggle) {
 			return yScale((d.values.avgU * 8) / 1000)
 		});
 	circles.exit().remove();
+	//nn funziona, da riparare ma da mantenere nello script centrale.
+    var up = svg.selectAll(".upload");
+    var down = svg.selectAll(".download");
+
+    //chrome detection
+    //mouseleave is not properly captured in chrome
+
+    if (!window.chrome) {
+        up.on("mouseover", function() {
+            down.attr("opacity", 0)
+        });
+        up.on("mouseleave", function() {
+            down.attr("opacity", 1)
+        });
+
+        down.on("mouseover", function() {
+            up.attr("opacity", 0)
+        });
+        down.on("mouseleave", function() {
+            up.attr("opacity", 1)
+        });
+    }
+    
 }
 //add axes according to the current range of values
 // and time
