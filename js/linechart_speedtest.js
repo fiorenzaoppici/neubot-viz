@@ -1,18 +1,3 @@
-/*
- *
- *
- * TODO:
- * cose da fare: fare visualizzazione con vettore  V
- * evitare di eliminare gli elementi grafici se non ci sono grafici disponibili V
- * controllare se start < end e in tal caso segnalarlo
- * evitare gli alert di default
- * definire una label per ogni punto
- * ----------------------------------------------
- * grafica: 
- *
- *
- *
- */
 
 var speedtest=(function() {
 	
@@ -22,11 +7,11 @@ var speedtest=(function() {
 	var ending = "";
 	
 	w = 700 - (2 * margin), h = 500 - (2 * margin);
-	var format1 = d3.time.format("%Y-%m-%d %H").parse;
-	var format2 = d3.time.format("%Y-%m-%d").parse;
+	var toDateHour = d3.time.format("%Y-%m-%d %H").parse;
+	var toDateDay = d3.time.format("%Y-%m-%d").parse;
 	
 	var xScale = d3.time.scale()
-				.domain([format1(beginning), format1(ending)])
+				.domain([toDateHour(beginning), toDateHour(ending)])
 				.range([0, w]);
 	var yScale = d3.scale.linear().range([h, 0]);
 
@@ -38,85 +23,79 @@ var speedtest=(function() {
  *   3: mm-YYYY
  *   1: dd-mm-YYYY HH
   */
-	var index = 2;
+	var aggregationLevel = 2;
 
 	var nest = [];
 
-// timespan placeholder
-
+	var drawLineDownload = d3.svg.line().x(function(d) {
+		return (xScale(d.values.date))
+	}).y(function(d) {
+		return yScale(d.values.avgD * 8 / 1000)
+	});
 	
-var lineD = d3.svg.line().x(function(d) {
-	return (xScale(d.values.date))
-}).y(function(d) {
-	return yScale(d.values.avgD * 8 / 1000)
-});
+	var drawLineUpload = d3.svg.line().x(function(d) {
+		return (xScale(d.values.date))
+	}).y(function(d) {
+		return yScale(d.values.avgU * 8 / 1000)
+	});
 
-var lineU = d3.svg.line().x(function(d) {
-	return (xScale(d.values.date))
-}).y(function(d) {
-	return yScale(d.values.avgU * 8 / 1000)
-});
 
-//adds svg circle elements for every point
-// depending on the parameter toggle, it can represent
-// upload or download data.
+	var drawCircles = function(trafficType) {
 
-var drawCircles = function(toggle) {
-
-	var circles = svg.selectAll("circle." + toggle).data(nest);
-	circles.enter()
-			.append("circle")
-			.attr("r", 5)
-			.attr("class", toggle)
-			.attr("cx", function(d) {
-		return (xScale(d.values.date));
-	})
-	if (toggle == "download")
-		circles.attr("cy", function(d) {
-			return yScale((d.values.avgD * 8 ) / 1000)
-		});
-	else
-		circles.attr("cy", function(d) {
-			return yScale((d.values.avgU * 8) / 1000)
-		});
-	circles.exit().remove();
-	//nn funziona, da riparare ma da mantenere nello script centrale.
-    var up = svg.selectAll(".upload");
-    var down = svg.selectAll(".download");
-
-    //chrome detection
-    //mouseleave is not properly captured in chrome
-
-    if (!window.chrome) {
-        up.on("mouseover", function() {
-            down.attr("opacity", 0)
-        });
-        up.on("mouseleave", function() {
-            down.attr("opacity", 1)
-        });
-
-        down.on("mouseover", function() {
-            up.attr("opacity", 0)
-        });
-        down.on("mouseleave", function() {
-            up.attr("opacity", 1)
-        });
-    }
+		var circles = svg.selectAll("circle." + trafficType).data(nest);
+		circles.enter()
+				.append("circle")
+				.attr("r", 5)
+				.attr("class", trafficType)
+				.attr("cx", function(d) {
+			return (xScale(d.values.date));
+		})
+		if (trafficType == "download")
+			circles.attr("cy", function(d) {
+				return yScale((d.values.avgD * 8 ) / 1000)
+			});
+		else
+			circles.attr("cy", function(d) {
+				return yScale((d.values.avgU * 8) / 1000)
+			});
+		circles.exit().remove();
+		//nn funziona, da riparare ma da mantenere nello script centrale.
+	    var up = svg.selectAll(".upload");
+	    var down = svg.selectAll(".download");
+	
+	    //chrome detection
+	    //mouseleave is not properly captured in chrome
+	
+	    if (!window.chrome) {
+	        up.on("mouseover", function() {
+	            down.attr("opacity", 0)
+	        });
+	        up.on("mouseleave", function() {
+	            down.attr("opacity", 1)
+	        });
+	
+	        down.on("mouseover", function() {
+	            up.attr("opacity", 0)
+	        });
+	        down.on("mouseleave", function() {
+	            up.attr("opacity", 1)
+	        });
+	    }
     
 }
-//add axes according to the current range of values
-// and time
-var addAxes = function() {
-	var scaleEnds = [d3.max(nest, function(d) {
+
+var drawAxes = function() {
+	
+	var eligibleYEnds = [d3.max(nest, function(d) {
 		return d.values.avgD
 	}), d3.max(nest, function(d) {
 		return d.values.avgU
 	})];
 
-	var end = ((d3.max(scaleEnds)) * 8 ) / 1000;
+	var endOfYScale = ((d3.max(eligibleYEnds)) * 8 ) / 1000;
 
-	yScale.domain([0, end]);
-	xScale.domain([format1(beginning), format1(ending)])
+	yScale.domain([0, endOfYScale]);
+	xScale.domain([toDateHour(beginning), toDateHour(ending)])
 
 	var xAxis = d3.svg.axis()
 						.scale(xScale)
@@ -129,7 +108,7 @@ var addAxes = function() {
 		.call(xAxis);
 
 	if (nest.length == 1) {
-		yScale.domain([0, end * 2]);
+		yScale.domain([0, endOfYScale * 2]);
 		yAxis.scale(yScale)
 	}
 
@@ -140,7 +119,7 @@ var addAxes = function() {
 }
 //adds reference lines according to the aggregation level.
 
-var addLines = function() {
+var drawLines = function() {
 	var xlines = svg.selectAll("line.y")
 						.data(yScale.ticks(10));
 	xlines.enter()
@@ -167,11 +146,12 @@ var addLines = function() {
 	ylines.exit().remove();
 
 }
-//json processing
-same.callback = function(array) {
+
+
+same.processJson = function(json) {
 	if (beginning != "" && ending != "") {
-		var s = format1(beginning);
-		var e = format1(ending);
+		var s = toDateHour(beginning);
+		var e = toDateHour(ending);
 
 		//filters all records that fit the interval
 		function checkSpan(element, index, array) {
@@ -179,10 +159,10 @@ same.callback = function(array) {
 			new Date(element.timestamp * 1000) <= e)
 		}
 
-		array = array.filter(checkSpan);
+		json = json.filter(checkSpan);
 	}
 
-	array.forEach(function(d) {
+	json.forEach(function(d) {
 
 		var date = new Date(d.timestamp * 1000);
 		var d1 = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + 
@@ -192,7 +172,7 @@ same.callback = function(array) {
 				date.getDate();
 		var d3 = date.getFullYear() + "-" + (date.getMonth() + 1);
 
-		d.date = format1(d1);
+		d.date = toDateHour(d1);
 		d.d1 = d1;
 		d.d2 = d2;
 		d.d3 = d3;
@@ -201,14 +181,14 @@ same.callback = function(array) {
 
 	if (beginning == "" && ending == "") {
 
-		s = d3.min(array, function(d) {
+		s = d3.min(json, function(d) {
 			return d.date
 		});
 
 		beginning = s.getFullYear() + "-" + (s.getMonth() + 1) + "-" + 
 					s.getDate() + " " + s.getHours();
 
-		e = d3.max(array, function(d) {
+		e = d3.max(json, function(d) {
 			return d.date
 		})
 		ending = e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + 
@@ -217,7 +197,7 @@ same.callback = function(array) {
 
 	nest = [];
 
-	if (index == 1) {
+	if (aggregationLevel == 1) {
 		nest = d3.nest().key(function(d) {
 			return d.d1
 		}).rollup(function(leaves) {
@@ -235,9 +215,9 @@ same.callback = function(array) {
 					return d.date;
 				})
 			}
-		}).entries(array);
+		}).entries(json);
 
-	} else if (index == 2) {
+	} else if (aggregationLevel == 2) {
 		nest = d3.nest().key(function(d) {
 			return d.d2
 		}).rollup(function(leaves) {
@@ -255,7 +235,7 @@ same.callback = function(array) {
 					return d.date;
 				})
 			}
-		}).entries(array);
+		}).entries(json);
 
 	} else {
 		nest = d3.nest().key(function(d) {
@@ -274,7 +254,7 @@ same.callback = function(array) {
 					return d.date;
 				})
 			}
-		}).entries(array);
+		}).entries(json);
 
 	}
 	//alert("nest"+nest);
@@ -284,13 +264,27 @@ same.callback = function(array) {
 			nest.sort(function(a, b) {
 			return a.values.date - b.values.date;
 	});
-	refresh();
+	removeElements();
 	drawElements();
 	}
 	}
-//removes all variable graphic elements and
-//calls again for data.
-var refresh = function() {
+
+
+var drawElements=function(){
+	drawAxes();
+	drawLines();
+	if (nest.length != 1) {
+		svg.append("svg:path").attr("d", drawLineUpload(nest))
+			.classed("upload", true);
+			
+		svg.append("svg:path").attr("d", drawLineDownload(nest))
+			.classed("download", true);
+	}
+	drawCircles("upload");
+	drawCircles("download");
+}
+
+var removeElements=function(){
 	svg.selectAll(".upload").remove();
 	svg.selectAll(".download").remove();
 	svg.selectAll(".axis").remove();
@@ -299,31 +293,23 @@ var refresh = function() {
 	svg.selectAll(".y").remove();
 }
 
-var drawElements=function(){
-	addAxes();
-	addLines();
-	if (nest.length != 1) {
-		svg.append("svg:path").attr("d", lineU(nest)).classed("upload", true);
-		svg.append("svg:path").attr("d", lineD(nest)).classed("download", true);
-	}
-	drawCircles("upload");
-	drawCircles("download");
+same.setBeginning=function(stringDate){
+	beginning = stringDate;
 }
 
-same.setBeginning=function(string){
-	beginning = string;
-}
-
-same.setEnding=function(string){
-	ending = string;
+same.setEnding=function(stringDate){
+	ending = stringDate;
 }
 
 
 //updates the index value and the view accordingly
-same.selectIndex = function(object) {
-	index = object.value;
-	d3.json("data/data_speedtest_2.json", function(json){speedtest.callback(json)});
+same.setAggregationLevel = function(object) {
+	aggregationLevel = object.value;
+	d3.json("data/data_speedtest_2.json", function(json){
+		speedtest.processJson(json)});
 };
 return same;
 })();
-var sp=d3.json("data/data_speedtest_2.json", function(json){speedtest.callback(json)});
+
+var sp=d3.json("data/data_speedtest_2.json", function(json){
+	speedtest.processJson(json)});

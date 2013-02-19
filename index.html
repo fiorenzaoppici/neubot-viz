@@ -11,36 +11,34 @@
 	</head>
 	<body>
 	    <div id="wrapper">
-		<div id="parameters" class="wbackground">
-		<h3></h3>
-			<select id="timebasis" class="selector">
-				<option value="2" selected> days <option value="1"> hours 
-				<option value="3"> months
-			</select>
-			<div id="fields">
-
-				<span>Start date:
-					<input id="startDate">
-					</input></span>
-				<span> End date:
-					<input id="endDate">
-					</input></span>
-				<button>
-					Submit!
-				</button>
-			</div>
-			<ul id="tabs">
-				<li id="tab-3">
-					Raw Test
-				</li>
-				<li id="tab-2">
-					Bittorrent
-				</li>
-				<li id="tab-1"class="selected">
-					Speedtest
-				</li>
-			</ul>
-		</div>
+	        <div id="parameters" class="wbackground">
+            <div id="fields">
+                <span>Start date:
+                    <input id="startDate">
+                    </input></span>
+                <span> End date:
+                    <input id="endDate">
+                    </input></span>
+                <select id="timebasis" class="selector">
+                <option value="2" selected> days <option value="1"> hours 
+                <option value="3"> months
+                </select>
+                <button>
+                    Submit!
+                </button>
+            </div>
+            <ul id="tabs">
+                <li id="tab-3">
+                    Raw Test
+                </li>
+                <li id="tab-2">
+                    Bittorrent
+                </li>
+                <li id="tab-1"class="selected">
+                    Speedtest
+                </li>
+            </ul>
+        </div>
 		<div id="container">
 			<div id="grapharea-1" class="wbackground">
 				<svg id="1"width="700" height="500">
@@ -142,8 +140,8 @@
 					</g>
 				</svg>
 			</div>
-
 		</div>
+		      
 		</div>
 		<script type="text/javascript">
             jQuery('#container').addClass('js');
@@ -176,78 +174,115 @@
      
     d3.selectAll("input").property("value","");
     d3.selectAll("input").attr("class","");
-    selector.attr("value",2);
+    selector.property("selected",2);
 
     defaultab.attr("class", "selected");
-		      var checkStart = function() {
-
     
-    var errorMsg = "";
-    alert(startDate.property("value"));
-    if (startDate.value == "") {
-        errorMsg = "Start date not specified";
-    } else if ((format2(startDate.property("value"))) == null) {
-        errorMsg = " Invalid date format!";
-    } else if (format2(startDate.property("value")) != null) {
-        startDate.attr("class", "");
-        return true
-    }
-
-    if (errorMsg != "") {
-        startDate.attr("class", "errorinput");
-        alert(errorMsg);
-        return false
-    }
-
-};
+    var checkStart = function() {
+        var errorMsg = "";
+        if (startDate.property("value") == "") {
+            errorMsg = "Start date not specified";
+        } else if ((format2(startDate.property("value"))) == null) {
+            errorMsg = " Invalid date format for start date";
+        } else if (format2(startDate.property("value")) != null) {
+            startDate.attr("class", "");
+        }
+        if (errorMsg != "") {
+            startDate.attr("class", "errorinput");
+        }
+        return errorMsg;
+    };
 
 //checks user input for the parameter "end date"
-var checkEnd = function() {
-
-    var errorMsg = "";
-    if (endDate.property("value") == "") {
-        errorMsg = "End date not specified";
-    } else if ((format2(endDate.property("value"))) == null) {
-        errorMsg = " Invalid date format!";
-    } else if (format2(endDate.property("value")) != null) {
-
-        endDate.attr("class", "");
-        return true
-    }
-
-    if (errorMsg != "") {
-        endDate.attr("class", "errorinput");
-        alert(errorMsg);
-        return false
-    }
-
-};
-
-
-d3.select("#timebasis")
-    .on("change.sp", function() {speedtest.selectIndex(this);})
-    .on("change.bt", function() {bittorrent.selectIndex(this);});
-    
-submit.on("click.sp", function() {
-    if (checkStart() && checkEnd()) {
-        speedtest.setBeginning(startDate.property("value")+ " 00");
-        speedtest.setEnding(endDate.property("value")+ " 23");
-        var bp=d3.json("data/data_speedtest_2.json", function(json){bittorrent.callback(json)});
+    var checkEnd = function() {
+        var errorMsg = "";
+        if (endDate.property("value") == "") {
+            errorMsg = "End date not specified";
+        } 
+        else if ((format2(endDate.property("value"))) == null) {
+            errorMsg = "Invalid date format for End date";
+        } 
+        else if (format2(endDate.property("value")) != null) {
+            endDate.attr("class", "");
         }
-});
+        if (errorMsg != "") {
+            endDate.attr("class", "errorinput");
+        }
+        return errorMsg;
+    };
 
-submit.on("click.bt", function() {
-    if (checkStart()) {
-        if(checkEnd()){
-        bittorrent.setBeginning(startDate.property("value") + " 00");
-        bittorrent.setEnding(endDate.property("value") + " 23");
-        var bt=d3.json("data/data_bittorrent_2.json", function(json){ bittorrent.callback(json)});
+
+    d3.select("#timebasis")
+        .on("change", function() {
+            speedtest.setAggregationLevel(this);
+            bittorrent.selectIndex(this);
+            })
+    
+    submit.on("click", function() {
+        
+        var errorMessages=[];
+                if(checkStart().length==0&&checkEnd().length==0){
+                    if(format2(startDate.property("value"))<=
+                       format2(endDate.property("value"))){
+                           
+                speedtest.setBeginning(startDate.property("value")+ " 00");
+                speedtest.setEnding(endDate.property("value")+ " 23");
+                
+                bittorrent.setBeginning(startDate.property("value") + " 00");
+                bittorrent.setEnding(endDate.property("value") + " 23");
+                
+                var bp=d3.json("data/data_speedtest_2.json", 
+                                function(json){speedtest.processJson(json)});
+                                
+                var bt=d3.json("data/data_bittorrent_2.json", 
+                                function(json){ bittorrent.callback(json)});
+                }else{
+                    errorMessages.push(
+                        "Start date must be smaller than end date.");
+                }
+            }else{
+              errorMessages.push(checkStart() , checkEnd())
+            }
+            if(errorMessages.length>0){
+                showErrors(errorMessages);
+            }else{
+                clearErrorPane();
+            }
+    });
+    
+    var showErrors= function(errorList){
+        var errorDiv;
+        
+        var parametersDiv = d3.select("#parameters");
+        
+        //just horrible way of handling it, I'll fix it as soon as possible
+        if(parametersDiv.select("#errorDiv")[0][0]==null){
+           errorDiv=parametersDiv.insert("div" , "#tabs")
+                                 .attr("id" , "errorDiv");
+           errorDiv.append("p")
+                   .text("Input errors:");
+        }else{
+            errorDiv=parametersDiv.select("#errorDiv");
+            parametersDiv.select("ul").remove()
+        }
+        var unorderedList = errorDiv.append("ul");
+            
+            for (i=0; i<errorList.length; i++){
+                if(errorList[i] != ""){
+                    unorderedList.append("li")
+                            .attr("class" , "errorLi")
+                            .text(errorList[i])
+                }
+            }
+        
     }
+    
+    var clearErrorPane = function(){
+        var parametersDiv = d3.select("#parameters");
+        if(parametersDiv.select("#errorDiv")[0][0]!=null){
+           parametersDiv.select("#errorDiv").remove();
+        }
     }
-})
-
-
-
-        </script>
+    </script>
 	</body>
 </html>

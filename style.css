@@ -8,7 +8,6 @@
 
 body {
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-    background-image: url("media/paper.jpg")
 }
 
 div {
@@ -17,21 +16,6 @@ div {
 	margin-right: auto;
 	width: 700px;
 }
-
-/*h1 {
-	color: white;
-	display: block;
-	text-align: center;
-}
-
-#logo {
-	display: inline-block;
-	width: 64px;
-	height: 64px;
-	background-image: url('http://www.neubot.org/neubotfiles/neubot_icon.png');
-}
-
-*/
 h3 {
 	color: #0F636E;
 	padding: 20px;
@@ -40,19 +24,9 @@ h3 {
 
 
 .wbackground {
-	border: 1px solid #0F636E;
-	background-color: rgba(150,192,201,0.5)
 }
 
-#parameters{
-	-webkit-border-top-left-radius: 20px;
-	-webkit-border-top-right-radius: 20px;
-	-moz-border-radius-topleft: 20px;
-	-moz-border-radius-topright: 20px;
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
-	
-	border-bottom:none;
+#parameters{	
 }
 
 
@@ -63,7 +37,7 @@ h3 {
 	height: 500px;
 	margin-top:none;
 	border-top:none;
-	background-color: rgb(150,192,201);
+	border: 2px solid #00B047;
 }
 
 #grapharea-2,
@@ -72,7 +46,7 @@ h3 {
 }
 
 input{
-	width:120px;
+	width:100px;
 	float:right;
 	display:inline;
 }
@@ -82,34 +56,17 @@ input{
 }
 
 #fields{
-    width:300px;
-	margin-left: 200px;
-	margin-top:50px;
-	border: 1px solid blue;
-	display:inline-block;
-}
-
-
-input{
-	width:120px;
-	float:right;
-	display:inline;
-}
-
-#fields{
-    width:300px;
-	margin-left: 200px;
-	margin-top:50px;
-	border: 1px solid blue;
-	display:inline-block;
+    width:680px;
+	margin-left: auto;
+	border: 1px solid green;
+	margin-top:5%;
+	margin-bottom:5%;
 }
 
 
 span {
-	display:block;
-	width:280px;
+	display:inline-block;
 	height:40px;
-	float:right;
 	margin-top:10px;
 	margin-left:10px;
 }
@@ -117,7 +74,7 @@ span {
 button{
 	height:30px;
 	float:right;
-	background:#0F636E;
+	background:#00B047;
 	color:white;
 	margin:10px;
 	border:none;
@@ -126,6 +83,14 @@ button{
     border-radius: 5px;
 }
 
+#errorDiv{
+    width:auto;
+    height:120px;
+    background-color:#F2AF9B;
+}
+
+select{
+}
 
 #tabs {
 	 margin: 0;
@@ -139,20 +104,16 @@ button{
 	 cursor: pointer;
 	 float: right;
 	 padding: 5px;
+	 margin-left:10px;
 	 background: #EFEFEF;
 	 margin-bottom: none;
-	-webkit-border-top-left-radius: 10px;
-	-webkit-border-top-right-radius: 10px;
-	-moz-border-radius-topleft: 10px;
-	-moz-border-radius-topright: 10px;
-	 border-top-left-radius: 10px;
-	 border-top-right-radius: 10px; 
 	 margin-bottom:0px;
 	 border:1px solid grey;
 	 border-bottom: none;
  }
 #tabs li.selected {
-	background-color: rgb(150,192,201);
+	background-color:#00B047;
+	color:white;
 	}
 
 #tabs-content { clear: both; }
