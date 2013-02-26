@@ -311,5 +311,4 @@ same.setAggregationLevel = function(object) {
 return same;
 })();
 
-var sp=d3.json("data/data_speedtest_2.json", function(json){
-	speedtest.processJson(json)});
+

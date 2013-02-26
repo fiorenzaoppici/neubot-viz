@@ -27,122 +27,38 @@
                     Submit!
                 </button>
             </div>
-            <ul id="tabs">
-                <li id="tab-3">
-                    Raw Test
-                </li>
-                <li id="tab-2">
-                    Bittorrent
-                </li>
-                <li id="tab-1"class="selected">
-                    Speedtest
-                </li>
-            </ul>
         </div>
-		<div id="container">
-			<div id="grapharea-1" class="wbackground">
-				<svg id="1"width="700" height="500">
-					<g class="background">
-						<rect x="20" y="20" width="660" height="460"
-						fill="white"></rect>
-						<text text-anchor="middle" x="60" y="210"
-						transform="rotate(-90,60,230)">
-							Goodput (Kbit/s)
-						</text>
-						<g class="legend">
-							<circle class="download" r="5" cx="650" cy="40">
-						
-							</circle>
-							<text text-anchor="middle" x="780" y="60"
-							transform=" scale(0.7)">
-								Download
-							</text>
-							<line class="download" x1="600" x2="645"
-							y1="40" y2="40"></line>
-							<circle class="upload" r="5" cx="650" cy="60">
-							
-							</circle>
-							<line class="upload" x1="600" x2="645" y1="60" y2="60">
-							
-							</line>
-							<text text-anchor="middle" x="780" y="90"
-							transform=" scale(0.7)">
-								Upload
-							</text>
-						</g>
-						<g class="refresh-1" transform="translate(100,80)"></g>
-					</g>
-				</svg>
-			</div>
-			<div id="grapharea-2" class="wbackground">
-				<svg id="2" width="700" height="500">
-					<g class="background">
-						<rect x="20" y="20" width="660" height="460"
-						fill="white"></rect>
-						<text text-anchor="middle" x="60" y="210"
-						transform="rotate(-90,60,230)">
-							Goodput (Kbit/s)
-						</text>
-						<g class="legend">
-							<circle class="download" r="5" cx="650" cy="40">
-						
-							</circle>
-							<text text-anchor="middle" x="780" y="60"
-							transform=" scale(0.7)">
-								Download
-							</text>
-							<line class="download" x1="600" x2="645"
-							y1="40" y2="40"></line>
-							<circle class="upload" r="5" cx="650" cy="60">
-						
-							</circle>
-							<line class="upload" x1="600" x2="645" y1="60" y2="60">
-							
-							</line>
-							<text text-anchor="middle" x="780" y="90"
-							transform=" scale(0.7)">
-								Upload
-							</text>
-						</g>
-						<g class="refresh-2" transform="translate(100,80)"></g>
-					</g>
-				</svg>
-			</div>
-			<div id="grapharea-3" class="wbackground">
-				<svg width="700" height="500">
-					<g class="background">
-						<rect x="20" y="20" width="660" height="460"
-						fill="white"></rect>
-						<text text-anchor="middle" x="60" y="210"
-						transform="rotate(-90,60,230)">
-							Goodput (Kbit/s)
-						</text>
-						<g class="legend">
-							<circle class="download" r="5" cx="650" cy="40"></circle>
-							<text text-anchor="middle" x="780" y="60"
-							transform=" scale(0.7)">
-								Download
-							</text>
-							<line class="download" x1="600" x2="645"
-							y1="40" y2="40"></line>
-							<circle class="upload" r="5" cx="650" cy="60">
-						
-							</circle>
-							<line class="upload" x1="600" x2="645" y1="60" y2="60">
-							
-							</line>
-							<text text-anchor="middle" x="780" y="90"
-							transform=" scale(0.7)">
-								Upload
-							</text>
-						</g>
-						<g class="refresh-3" transform="translate(100,80)"></g>
-					</g>
-				</svg>
-			</div>
+		<div id="containers">
+		    <div id="tabcontainer">
+                <ul id="tabs">
+                    <li id="tab-3">
+                        Raw Test
+                    </li>
+                    <li id="tab-2">
+                        Bittorrent
+                    </li>
+                    <li id="tab-1"class="selected">
+                        Speedtest
+                    </li>
+                </ul>
+            </div>
+            <div id="graphcontainer"></div>
 		</div>
-		      
-		</div>
+		<script type ="text/javascript">
+		    var container = d3.select("#graphcontainer");
+		    var graphareas = container.selectAll("div")
+		                    .data(["1", "2", "3"]);
+		    graphareas.enter().append("div")
+		                      .attr("id" , function(d){return "grapharea-"+d})
+		                      .attr("class" , "wbackground")
+		                      .append("svg")
+		                      .attr("width" , "700")
+		                      .attr("height" , "500")
+		                      .append("g")
+		                      .attr("class" , function(d){return "refresh-"+d})
+		                      .attr("transform" , "translate(100,80)");
+	
+		</script>
 		<script type="text/javascript">
             jQuery('#container').addClass('js');
             jQuery("#tabs li").each(function() {
@@ -157,71 +73,123 @@
                 });
             });
 		</script>
-
-	
 		<script type="text/javascript" src="js/linechart_bittorrent.js"></script>
 		<script type="text/javascript" src="js/linechart_speedtest.js"></script>
 		<script type="text/javascript">
-		      
-    var submit=d3.select("button");
-    var startDate=d3.select("#startDate");
-    var endDate=d3.select("#endDate");
-    var selector=d3.select("#timebasis");
-    var defaultab = d3.select("#tab-1");
-    
-    format2 = d3.time.format("%Y-%m-%d").parse;
-    
-     
-    d3.selectAll("input").property("value","");
-    d3.selectAll("input").attr("class","");
-    selector.property("selected",2);
-
-    defaultab.attr("class", "selected");
-    
-    var checkStart = function() {
-        var errorMsg = "";
-        if (startDate.property("value") == "") {
-            errorMsg = "Start date not specified";
-        } else if ((format2(startDate.property("value"))) == null) {
-            errorMsg = " Invalid date format for start date";
-        } else if (format2(startDate.property("value")) != null) {
-            startDate.attr("class", "");
-        }
-        if (errorMsg != "") {
-            startDate.attr("class", "errorinput");
-        }
-        return errorMsg;
-    };
-
-//checks user input for the parameter "end date"
-    var checkEnd = function() {
-        var errorMsg = "";
-        if (endDate.property("value") == "") {
-            errorMsg = "End date not specified";
-        } 
-        else if ((format2(endDate.property("value"))) == null) {
-            errorMsg = "Invalid date format for End date";
-        } 
-        else if (format2(endDate.property("value")) != null) {
-            endDate.attr("class", "");
-        }
-        if (errorMsg != "") {
-            endDate.attr("class", "errorinput");
-        }
-        return errorMsg;
-    };
-
-
-    d3.select("#timebasis")
-        .on("change", function() {
-            speedtest.setAggregationLevel(this);
-            bittorrent.selectIndex(this);
-            })
-    
-    submit.on("click", function() {
+		
+        var bt = d3.json("data/data_bittorrent_2.json",
+                         function(error,json){bittorrent.callback(error,json)});
+                         
+        var sp = d3.json("data/data_speedtest_2.json", function(json){
+                  speedtest.processJson(json)});
+                  
+        var submit=d3.select("button");
+        var startDate=d3.select("#startDate");
+        var endDate=d3.select("#endDate");
+        var selector=d3.select("#timebasis");
+        var defaultab = d3.select("#tab-1");
         
-        var errorMessages=[];
-                if(checkStart().length==0&&checkEnd().length==0){
+        format2 = d3.time.format("%Y-%m-%d").parse;
+        
+         
+        d3.selectAll("input").property("value","");
+        d3.selectAll("input").attr("class","");
+        selector.property("selected",2);
+    
+        defaultab.attr("class", "selected");
+        
+        var errorUtilities = (function(){
+            var same ={};
+            same.checkStart = function() {
+                var errorMsg = "";
+                if (startDate.property("value") == "") {
+                    errorMsg = "Start date not specified";
+                } else if ((format2(startDate.property("value"))) == null) {
+                    errorMsg = " Invalid date format for start date";
+                } else if (format2(startDate.property("value")) != null) {
+                    startDate.attr("class", "");
+                    return null;
+                }
+                if (errorMsg != "") {
+                    startDate.attr("class", "errorinput");
+                }
+                return errorMsg;
+            };
+            
+          same.checkEnd =function() {
+                var errorMsg = "";
+                if (endDate.property("value") == "") {
+                    errorMsg = "End date not specified";
+                } 
+                else if ((format2(endDate.property("value"))) == null) {
+                    errorMsg = "Invalid date format for End date";
+                } 
+                else if (format2(endDate.property("value")) != null) {
+                    endDate.attr("class", "");
+                    return null;
+                }
+                if (errorMsg != "") {
+                    endDate.attr("class", "errorinput");
+                }
+                return errorMsg;
+            };
+            
+            same.showErrors = function(errorList){
+                var errorDiv;
+                if(errorList.length>0){
+                    var parametersDiv = d3.select("#parameters");
+                    var inputsField = d3.select("#fields");
+                    
+                    inputsField.style("margin-bottom", "0px");
+                    //just horrible way of handling it, I'll fix it as soon as possible
+                    //if there is no ErrorDiv in the page, append one
+                    if(parametersDiv.select("#errorDiv")[0][0]==null){
+                       errorDiv = parametersDiv.append("div")
+                                             .attr("id" , "errorDiv");
+                       errorDiv.append("p")
+                               .text("Input errors:");
+                       var unorderedList = errorDiv.append("ul");
+                    }else{
+                        errorDiv = parametersDiv.select("#errorDiv");
+                        unorderedList = parametersDiv.select("ul");
+                    }
+                    //enter and exit: automatically updates what data is new and 
+                    //what is old.
+                    var listElements = unorderedList.selectAll("li")
+                                            .data(errorList, String);
+                               listElements.enter().append("li")
+                                                   .text(String);
+                               listElements.exit().remove();
+                }else{
+                    errorUtilities.clearErrorPane();
+                }
+            }
+           same.clearErrorPane = function(){
+                var parametersDiv = d3.select("#parameters");
+                if(parametersDiv.select("#errorDiv")[0][0]!=null){
+                   parametersDiv.select("#errorDiv").remove();
+                   d3.select("#fields").style("margin-bottom", "5%");
+                   startDate.attr("class", "");
+                   endDate.attr("class","");
+                }
+            };
+           return same;
+        })();
+        
+        d3.select("#timebasis")
+            .on("change", function() {
+                speedtest.setAggregationLevel(this);
+                bittorrent.selectIndex(this);
+                errorUtilities.clearErrorPane();
+                })
+        
+        submit.on("click", function() {
+            
+            var errorMessages=[];
+            //if both dates are correct
+            if(errorUtilities.checkStart()==null&&
+            errorUtilities.checkEnd()==null){
+                    // if start date is smaller than end
                     if(format2(startDate.property("value"))<=
                        format2(endDate.property("value"))){
                            
@@ -231,58 +199,30 @@
                 bittorrent.setBeginning(startDate.property("value") + " 00");
                 bittorrent.setEnding(endDate.property("value") + " 23");
                 
-                var bp=d3.json("data/data_speedtest_2.json", 
-                                function(json){speedtest.processJson(json)});
+                var sp=d3.json("data/data_speedtest_2.json", 
+                                function(error,json){
+                                    speedtest.processJson(json)});
                                 
                 var bt=d3.json("data/data_bittorrent_2.json", 
-                                function(json){ bittorrent.callback(json)});
-                }else{
-                    errorMessages.push(
-                        "Start date must be smaller than end date.");
-                }
+                                function(error,json){ 
+                                    bittorrent.callback(error,json)});
             }else{
-              errorMessages.push(checkStart() , checkEnd())
+                //if the start date is after the end
+                errorUtilities.errorMessages.push(
+                    "Start date must be smaller than end date.");
             }
-            if(errorMessages.length>0){
-                showErrors(errorMessages);
-            }else{
-                clearErrorPane();
-            }
-    });
-    
-    var showErrors= function(errorList){
-        var errorDiv;
-        
-        var parametersDiv = d3.select("#parameters");
-        
-        //just horrible way of handling it, I'll fix it as soon as possible
-        if(parametersDiv.select("#errorDiv")[0][0]==null){
-           errorDiv=parametersDiv.insert("div" , "#tabs")
-                                 .attr("id" , "errorDiv");
-           errorDiv.append("p")
-                   .text("Input errors:");
         }else{
-            errorDiv=parametersDiv.select("#errorDiv");
-            parametersDiv.select("ul").remove()
+            // check whcich field was wrong and push the related error into
+            // error description.
+           if(errorUtilities.checkStart()!=null){
+               errorMessages.push(errorUtilities.checkStart())
+           }
+           if(errorUtilities.checkEnd()!=null){
+               errorMessages.push(errorUtilities.checkEnd())
+           }
         }
-        var unorderedList = errorDiv.append("ul");
-            
-            for (i=0; i<errorList.length; i++){
-                if(errorList[i] != ""){
-                    unorderedList.append("li")
-                            .attr("class" , "errorLi")
-                            .text(errorList[i])
-                }
-            }
-        
-    }
-    
-    var clearErrorPane = function(){
-        var parametersDiv = d3.select("#parameters");
-        if(parametersDiv.select("#errorDiv")[0][0]!=null){
-           parametersDiv.select("#errorDiv").remove();
-        }
-    }
+    errorUtilities.showErrors(errorMessages);
+        });
     </script>
 	</body>
 </html>
