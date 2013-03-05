@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Mercator Projection</title>
+<style>
+
+rect{
+    border: 1px solid green;
+}
+.countryPath {
+  fill: green;
+  stroke: #fff;
+  stroke-width: 0.5px;
+}
+
+.countryPath_unselected{
+    fill:gray;
+}
+
+.countryPath_selected {
+    fill: green;
+}
+
+ #sea{
+     fill:white;
+ }
+</style>
+
+<svg width="700" height="500" class="container">
+    <rect id="sea" width="700" height="500">
+
+    </rect>
+</svg>
+<script src="http://d3js.org/d3.v2.js?2.9.1"></script>
+<script>
+
+var mercator = d3.geo.mercator()
+                 .scale("700")
+                 .translate([350, 250]);
+
+var zoom = d3.behavior.zoom()
+    .translate(mercator.translate())
+    .scale(mercator.scale())
+    .scaleExtent([500, 20 * 500])
+    .on("zoom", move);
+
+var selectCountry = function(pathId){
+
+    d3.selectAll(".countryPath")
+      .attr("class", "countryPath_unselected");
+    d3.selectAll(".countryPath_selected")
+      .attr("class", "countryPath_unselected");
+
+    var newSelected = d3.select("#"+pathId);
+
+    newSelected.attr("class", "countryPath_selected");
+
+    var centroid = d3.geo.path().projection(mercator).centroid(d);
+}
+
+var deselect = function(){
+    d3.selectAll("path").
+       attr("class", "countryPath");
+}
+
+function move() {
+  mercator.translate(d3.event.translate).scale(d3.event.scale);
+  d3.selectAll("path")
+    .attr("d", d3.geo.path().projection(mercator))
+}
+
+
+d3.json("data/world.geo.json", function(collection) {
+  d3.select("svg").selectAll("g")
+      .data(collection.features)
+      .enter().append("g")
+      .append("path")
+      .attr("d", d3.geo.path().projection(mercator))
+      .attr("class", "countryPath")
+      .attr("id", function (d){ return d.id})
+      .on("click", function(){
+          selectCountry(this.id);
+      })
+      .append("svg:title")
+      .text(function(d){return d.properties.name});
+
+       d3.select("#ATA").remove();
+      })
+
+var svg = d3.select(".container");
+svg.call(zoom);
+d3.select("#sea").on("click", function(d, i){deselect()});
+
+</script>

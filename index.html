@@ -1,17 +1,19 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Neubot online tool</title>
-		<link rel="stylesheet" type="text/css" href="style.css" />
-		<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
-		<script src="js/d3.js"></script>
 
-	</head>
-	<body>
-	    <div id="wrapper">
-	        <div id="parameters" class="wbackground">
+<!DOCTYPE html>
+<meta charset="utf-8">
+    <head>
+        <title>Neubot online tool</title>
+        <link rel="stylesheet" type="text/css"
+         href="css/jquery-ui-1.10.1.custom.css">
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+         <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="js/d3.js"></script>
+
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="parameters" class="wbackground">
             <div id="fields">
                 <span>Start date:
                     <input id="startDate">
@@ -20,7 +22,7 @@
                     <input id="endDate">
                     </input></span>
                 <select id="timebasis" class="selector">
-                <option value="2" selected> days <option value="1"> hours 
+                <option value="2" selected> days <option value="1"> hours
                 <option value="3"> months
                 </select>
                 <button>
@@ -28,8 +30,8 @@
                 </button>
             </div>
         </div>
-		<div id="containers">
-		    <div id="tabcontainer">
+        <div id="containers">
+            <div id="tabcontainer">
                 <ul id="tabs">
                     <li id="tab-3">
                         Raw Test
@@ -43,61 +45,87 @@
                 </ul>
             </div>
             <div id="graphcontainer"></div>
-		</div>
-		<script type ="text/javascript">
-		    var container = d3.select("#graphcontainer");
-		    var graphareas = container.selectAll("div")
-		                    .data(["1", "2", "3"]);
-		    graphareas.enter().append("div")
-		                      .attr("id" , function(d){return "grapharea-"+d})
-		                      .attr("class" , "wbackground")
-		                      .append("svg")
-		                      .attr("width" , "700")
-		                      .attr("height" , "500")
-		                      .append("g")
-		                      .attr("class" , function(d){return "refresh-"+d})
-		                      .attr("transform" , "translate(100,80)");
-	
-		</script>
-		<script type="text/javascript">
+        </div>
+        <script type ="text/javascript">
+            var container = d3.select("#graphcontainer");
+            var graphareas = container.selectAll("div")
+                            .data(["1", "2", "3"]);
+            graphareas.enter().append("div")
+                              .attr("id" , function(d){return "grapharea-"+d})
+                              .attr("class" , "wbackground")
+                              .append("svg")
+                              .attr("width" , "700")
+                              .attr("height" , "500")
+                              .append("g")
+                              .attr("class" , function(d){return "refresh-"+d})
+                              .attr("transform" , "translate(100,80)");
+
+        </script>
+        <script type="text/javascript">
+         $( "#startDate" ).datepicker({dateFormat:"yy-mm-dd"});
+         $("#endDate").datepicker({dateFormat: "yy-mm-dd"});
             jQuery('#container').addClass('js');
             jQuery("#tabs li").each(function() {
                 jQuery(this).click(function() {
                     var tabId = jQuery(this).attr('id');
                     var tabId = tabId.split('-');
-                    var tabContent = document.getElementById('grapharea-' + tabId[1]);
+                    var tabContent = document.getElementById('grapharea-' +
+                     tabId[1]);
                     tabContent.style.display = 'block';
                     jQuery(this).addClass('selected');
                     jQuery(this).siblings().removeClass('selected');
                     jQuery(tabContent).siblings().css('display', 'none');
                 });
             });
-		</script>
-		<script type="text/javascript" src="js/linechart_bittorrent.js"></script>
-		<script type="text/javascript" src="js/linechart_speedtest.js"></script>
-		<script type="text/javascript">
-		
+        </script>
+        <script type="text/javascript" src="js/bittorrent.js"></script>
+        <script type="text/javascript" src="js/speedtest.js"></script>
+        <script type="text/javascript">
+
+        /*-
+ * Copyright (c) 2013
+ *     Nexa Center for Internet & Society, Politecnico di Torino (DAUIN)
+ *     and Fiorenza Oppici fiorenza.oppici[at]studenti.polito.it
+ *
+ * This file is part of Neubot <http://www.neubot.org/>.
+ *
+ * Neubot is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Neubot is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Neubot.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
         var bt = d3.json("data/data_bittorrent_2.json",
-                         function(error,json){bittorrent.callback(error,json)});
-                         
-        var sp = d3.json("data/data_speedtest_2.json", function(json){
-                  speedtest.processJson(json)});
-                  
+                         function(error,json){
+                             bittorrent.processJson(error,json)});
+
+        var sp = d3.json("data/data_speedtest_2.json",
+                        function(error,json){
+                                speedtest.processJson(error,json)});
+
         var submit=d3.select("button");
         var startDate=d3.select("#startDate");
         var endDate=d3.select("#endDate");
         var selector=d3.select("#timebasis");
         var defaultab = d3.select("#tab-1");
-        
+
         format2 = d3.time.format("%Y-%m-%d").parse;
-        
-         
+
+
         d3.selectAll("input").property("value","");
         d3.selectAll("input").attr("class","");
         selector.property("selected",2);
-    
+
         defaultab.attr("class", "selected");
-        
+
         var errorUtilities = (function(){
             var same ={};
             same.checkStart = function() {
@@ -115,15 +143,15 @@
                 }
                 return errorMsg;
             };
-            
-          same.checkEnd =function() {
+
+            same.checkEnd =function() {
                 var errorMsg = "";
                 if (endDate.property("value") == "") {
                     errorMsg = "End date not specified";
-                } 
+                }
                 else if ((format2(endDate.property("value"))) == null) {
                     errorMsg = "Invalid date format for End date";
-                } 
+                }
                 else if (format2(endDate.property("value")) != null) {
                     endDate.attr("class", "");
                     return null;
@@ -133,17 +161,17 @@
                 }
                 return errorMsg;
             };
-            
+
             same.showErrors = function(errorList){
                 var errorDiv;
                 if(errorList.length>0){
                     var parametersDiv = d3.select("#parameters");
                     var inputsField = d3.select("#fields");
-                    
+
                     inputsField.style("margin-bottom", "0px");
                     //just horrible way of handling it, I'll fix it as soon as possible
                     //if there is no ErrorDiv in the page, append one
-                    if(parametersDiv.select("#errorDiv")[0][0]==null){
+                    if(parametersDiv.select("#errorDiv").empty()){
                        errorDiv = parametersDiv.append("div")
                                              .attr("id" , "errorDiv");
                        errorDiv.append("p")
@@ -153,13 +181,14 @@
                         errorDiv = parametersDiv.select("#errorDiv");
                         unorderedList = parametersDiv.select("ul");
                     }
-                    //enter and exit: automatically updates what data is new and 
+                    //enter and exit: automatically updates what data is new and
                     //what is old.
                     var listElements = unorderedList.selectAll("li")
                                             .data(errorList, String);
                                listElements.enter().append("li")
                                                    .text(String);
                                listElements.exit().remove();
+                    errorDiv.style()
                 }else{
                     errorUtilities.clearErrorPane();
                 }
@@ -175,16 +204,16 @@
             };
            return same;
         })();
-        
+
         d3.select("#timebasis")
             .on("change", function() {
                 speedtest.setAggregationLevel(this);
-                bittorrent.selectIndex(this);
+                bittorrent.setAggregationLevel(this);
                 errorUtilities.clearErrorPane();
                 })
-        
+
         submit.on("click", function() {
-            
+
             var errorMessages=[];
             //if both dates are correct
             if(errorUtilities.checkStart()==null&&
@@ -192,23 +221,23 @@
                     // if start date is smaller than end
                     if(format2(startDate.property("value"))<=
                        format2(endDate.property("value"))){
-                           
+
                 speedtest.setBeginning(startDate.property("value")+ " 00");
                 speedtest.setEnding(endDate.property("value")+ " 23");
-                
+
                 bittorrent.setBeginning(startDate.property("value") + " 00");
                 bittorrent.setEnding(endDate.property("value") + " 23");
-                
-                var sp=d3.json("data/data_speedtest_2.json", 
+
+                var sp=d3.json("data/data_speedtest_2.json",
                                 function(error,json){
-                                    speedtest.processJson(json)});
-                                
-                var bt=d3.json("data/data_bittorrent_2.json", 
-                                function(error,json){ 
-                                    bittorrent.callback(error,json)});
+                                    speedtest.processJson(error,json)});
+
+                var bt=d3.json("data/data_bittorrent_2.json",
+                                function(error,json){
+                                    bittorrent.processJson(error,json)});
             }else{
                 //if the start date is after the end
-                errorUtilities.errorMessages.push(
+                errorMessages.push(
                     "Start date must be smaller than end date.");
             }
         }else{
@@ -224,5 +253,5 @@
     errorUtilities.showErrors(errorMessages);
         });
     </script>
-	</body>
+    </body>
 </html>
