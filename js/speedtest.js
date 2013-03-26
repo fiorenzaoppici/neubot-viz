@@ -280,7 +280,7 @@ var speedtest=(function() {
 
     }
         if (nest.length == 0) {
-            var errorMsg="No data available from Bittorrent test for this timespan";
+            var errorMsg="No data available from Speedtest for this timespan";
         errorUtilities.showErrors([errorMsg]);
     }else{
             nest.sort(function(a, b) {

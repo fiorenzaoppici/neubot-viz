@@ -288,7 +288,7 @@ var bittorrent=(function() {
 
                 }
                     if (nest.length == 0) {
-                        var errorMsg="No data available from Bittorrent"+
+                        var errorMsg="No data available from Bittorrent "+
                         "test for this timespan";
                     errorUtilities.showErrors([errorMsg]);
                 }else{
