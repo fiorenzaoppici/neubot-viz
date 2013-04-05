@@ -19,14 +19,15 @@
  * along with Neubot.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var bittorrent=(function() {
+var bittorrent= ( function() {
 
-    var same={};
+    var self = {};
     var margin = 80;
     var beginning = "";
     var ending = "";
 
-    w = 700 - (2 * margin), h = 500 - (2 * margin);
+    var w = 700 - (2 * margin);
+    var h = 500 - (2 * margin);
     var format1 = d3.time.format("%Y-%m-%d %H").parse;
     var format2 = d3.time.format("%Y-%m-%d").parse;
 
@@ -37,37 +38,33 @@ var bittorrent=(function() {
 
     var svg = d3.select(".refresh-2");
 
-/*   index represents the current aggregation level
- *   it's updated via the select element in the html.
- *   2: dd-mm-YYYY
- *   3: mm-YYYY
- *   1: dd-mm-YYYY HH
-  */
+   /*  index represents the current aggregation level
+    *   it's updated via the select element in the html.
+    *   2: dd-mm-YYYY
+    *   3: mm-YYYY
+    *   1: dd-mm-YYYY HH
+    */
     var index = 2;
 
     var quotient = 1000;
 
     var nest = [];
 
-// timespan placeholder
-
-
     var lineD = d3.svg.line().x(function(d) {
-        return (xScale(d.values.date))
+        return (xScale(d.values.date));
     }).y(function(d) {
-        return yScale(d.values.avgD * 8 / quotient)
+        return yScale(d.values.avgD * 8 / quotient);
     });
 
     var lineU = d3.svg.line().x(function(d) {
         return (xScale(d.values.date))
     }).y(function(d) {
-        return yScale(d.values.avgU * 8 / quotient)
+        return yScale(d.values.avgU * 8 / quotient);
     });
 
-//adds svg circle elements for every point
-// depending on the parameter toggle, it can represent
-// upload or download data.
-
+    //adds svg circle elements for every point
+    // depending on "toggle" parameter it can represent
+    // upload or download data.
     var drawCircles = function(toggle) {
         var circles = svg.selectAll("circle." + toggle).data(nest);
         circles.enter()
@@ -77,46 +74,47 @@ var bittorrent=(function() {
                 .attr("cx", function(d) {
             return (xScale(d.values.date));
         })
-        if (toggle == "download")
+        if (toggle === "download")
             circles.attr("cy", function(d) {
-                return yScale((d.values.avgD * 8 ) / quotient)
+                return yScale((d.values.avgD * 8 ) / quotient);
             });
         else
             circles.attr("cy", function(d) {
-                return yScale((d.values.avgU * 8) / quotient)
+                return yScale((d.values.avgU * 8) / quotient);
             });
         circles.exit().remove();
-    }
-//add axes according to the current range of values
-// and time
+    };
+
+    //add axes according to the current range of values
+    // and time
     var addAxes = function() {
         var scaleEnds = [d3.max(nest, function(d) {
-            return d.values.avgD
+            return d.values.avgD;
         }), d3.max(nest, function(d) {
-            return d.values.avgU
+            return d.values.avgU;
         })];
 
-        var end = ((d3.max(scaleEnds)) * 8 ) / 1000;
+        var end = ((d3.max(scaleEnds)) * 8) / 1000;
         var measureScale = "Kbps";
 
         //this means that I've 10^6 instead of 10^3 so from K-->M
-        if(end>10000){
+        if(end > 10000){
 
-            quotient = 1000*1000;
-            end = end/1000;
+            quotient = 1000 * 1000;
+            end = end / 1000;
             measureScale = "Mbps";
         }
 
         svg.append("svg:text")
-           .attr("class" , "label")
-           .attr("x" , "-250")
+           .attr("class", "label")
+           .attr("x", "-250")
            .attr("y", "-50")
-           .attr("anchor" , "middle")
-           .attr("transform" , "rotate(-90)")
+           .attr("anchor", "middle")
+           .attr("transform", "rotate(-90)")
            .text("Goodput ("+measureScale+")");
 
         yScale.domain([0, end]);
-        xScale.domain([format1(beginning), format1(ending)])
+        xScale.domain([format1(beginning), format1(ending)]);
 
 
         var xAxis = d3.svg.axis()
@@ -132,19 +130,18 @@ var bittorrent=(function() {
             .attr("transform", "translate(0," + h + ")")
             .call(xAxis);
 
-        if (nest.length == 1) {
+        if (nest.length === 1) {
             yScale.domain([0, end * 2]);
             yAxis.scale(yScale)
         }
 
         svg.append("g").attr("class", "axis")
-        //      .attr("transform", "translate(20,0)")
-        .call(yAxis);
+                        .call(yAxis);
 
     }
-//adds reference lines according to the aggregation level.
 
-    var addLines = function() {
+   //adds reference lines according to the aggregation level.
+   var addLines = function() {
         var xlines = svg.selectAll("line.y")
                             .data(yScale.ticks(10));
         xlines.enter()
@@ -171,14 +168,13 @@ var bittorrent=(function() {
         ylines.exit().remove();
 
     }
-//json processing
-    same.processJson = function(error,json) {
 
-            if (error!==null){
-                var errorMessage =[]
+    self.processJson = function(error, json) {
+            if (error !== null){
+                var errorMessage = [];
                 errorMessage.push(error.toString);
             }else {
-                if (beginning != "" && ending != "") {
+                if (beginning !== "" && ending !== "") {
                     var s = format1(beginning);
                     var e = format1(ending);
 
@@ -190,9 +186,7 @@ var bittorrent=(function() {
                     json = json.filter(checkSpan);
                 }
 
-
                 json.forEach(function(d) {
-
                     var date = new Date(d.timestamp * 1000);
                     var d1 = date.getFullYear() + "-" + (date.getMonth() + 1) +
                              "-" + date.getDate() + " " + date.getHours();
@@ -202,6 +196,7 @@ var bittorrent=(function() {
 
                     var d3 = date.getFullYear() + "-" + (date.getMonth() + 1);
 
+                    //binds the date formatted in three different styles.
                     d.date = format1(d1);
                     d.d1 = d1;
                     d.d2 = d2;
@@ -209,17 +204,17 @@ var bittorrent=(function() {
 
                 });
 
-                if (beginning == "" && ending == "") {
+                if (beginning === "" && ending === "") {
 
                     s = d3.min(json, function(d) {
-                        return d.date
+                        return d.date;
                     });
 
                     beginning = s.getFullYear() + "-" + (s.getMonth() + 1) +
                                 "-" + s.getDate() + " " + s.getHours();
 
                     e = d3.max(json, function(d) {
-                        return d.date
+                        return d.date;
                     })
                     ending = e.getFullYear() + "-" + (e.getMonth() + 1) + "-"
                              + e.getDate() + " " + e.getHours();
@@ -227,9 +222,9 @@ var bittorrent=(function() {
 
                 nest = [];
 
-                if (index == 1) {
+                if (index === 1) {
                     nest = d3.nest().key(function(d) {
-                        return d.d1
+                        return d.d1;
                     }).rollup(function(leaves) {
                         return {
 
@@ -247,9 +242,9 @@ var bittorrent=(function() {
                         }
                     }).entries(json);
 
-                } else if (index == 2) {
+                } else if (index === 2) {
                     nest = d3.nest().key(function(d) {
-                        return d.d2
+                        return d.d2;
                     }).rollup(function(leaves) {
                         return {
 
@@ -269,7 +264,7 @@ var bittorrent=(function() {
 
                 } else {
                     nest = d3.nest().key(function(d) {
-                        return d.d3
+                        return d.d3;
                     }).rollup(function(leaves) {
                         return {
                             "avgD" : d3.sum(leaves, function(d) {
@@ -287,8 +282,8 @@ var bittorrent=(function() {
                     }).entries(json);
 
                 }
-                    if (nest.length == 0) {
-                        var errorMsg="No data available from Bittorrent "+
+                    if (nest.length === 0) {
+                        var errorMsg = "No data available from Bittorrent "+
                         "test for this timespan";
                     errorUtilities.showErrors([errorMsg]);
                 }else{
@@ -297,11 +292,12 @@ var bittorrent=(function() {
                 });
                 refresh();
                 drawElements();
-                }
-    }
-    }
-//removes all variable graphic elements and
-//calls again for data.
+            }
+        }
+    };
+
+    //removes all variable graphic elements and
+    //calls again for data.
     var refresh = function() {
         svg.selectAll(".upload").remove();
         svg.selectAll(".download").remove();
@@ -309,12 +305,12 @@ var bittorrent=(function() {
         svg.selectAll("path").remove();
         svg.selectAll(".x").remove();
         svg.selectAll(".y").remove();
-    }
+    };
 
-    var drawElements=function(){
+    var drawElements = function() {
         addAxes();
         addLines();
-        if (nest.length != 1) {
+        if (nest.length !== 1) {
             svg.append("svg:path").attr("d", lineU(nest))
                 .classed("upload", true);
             svg.append("svg:path").attr("d", lineD(nest))
@@ -322,24 +318,24 @@ var bittorrent=(function() {
         }
         drawCircles("upload");
         drawCircles("download");
-    }
+    };
 
-    same.setBeginning=function(string){
+    self.setBeginning = function(string) {
         beginning = string;
-    }
+    };
 
-    same.setEnding=function(string){
+    self.setEnding = function(string) {
         ending = string;
-    }
-
+    };
 
     //updates the index value and the view accordingly
-    same.setAggregationLevel = function(object) {
+    self.setAggregationLevel = function(object) {
         index = object.value;
-        d3.json("data/data_bittorrent_2.json", function(error,json){
-                                    bittorrent.processJson(error,json)});
+        d3.json("data/data_bittorrent_2.json", function(error,json) {
+                                    bittorrent.processJson(error,json);
+                                    });
     };
-    return same;
+    return self;
 })();
 
 

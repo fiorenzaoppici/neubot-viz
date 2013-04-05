@@ -19,9 +19,9 @@
  * along with Neubot.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var speedtest=(function() {
+var speedtest=( function() {
 
-    var same={};
+    var self = {};
     var margin = 80;
     var beginning = "";
     var ending = "";
@@ -49,19 +49,16 @@ var speedtest=(function() {
 
     var nest = [];
 
-// timespan placeholder
-
-
     var lineD = d3.svg.line().x(function(d) {
         return (xScale(d.values.date))
     }).y(function(d) {
-        return yScale(d.values.avgD * 8 / quotient)
+        return yScale(d.values.avgD * 8 / quotient);
     });
 
     var lineU = d3.svg.line().x(function(d) {
         return (xScale(d.values.date))
     }).y(function(d) {
-        return yScale(d.values.avgU * 8 / quotient)
+        return yScale(d.values.avgU * 8 / quotient);
     });
 
     var drawCircles = function(toggle) {
@@ -73,45 +70,46 @@ var speedtest=(function() {
                 .attr("cx", function(d) {
             return (xScale(d.values.date));
         })
-        if (toggle == "download")
+        if (toggle == "download") {
             circles.attr("cy", function(d) {
-                return yScale((d.values.avgD * 8 ) / quotient)
+                return yScale((d.values.avgD * 8) / quotient);
             });
-        else
+        } else {
             circles.attr("cy", function(d) {
-                return yScale((d.values.avgU * 8) / quotient)
+                return yScale((d.values.avgU * 8) / quotient);
             });
+        }
         circles.exit().remove();
-    }
+    };
 
     var addAxes = function() {
         var scaleEnds = [d3.max(nest, function(d) {
-            return d.values.avgD
+            return d.values.avgD;
         }), d3.max(nest, function(d) {
-            return d.values.avgU
+            return d.values.avgU;
         })];
 
-        var end = ((d3.max(scaleEnds)) * 8 ) / 1000;
+        var end = ((d3.max(scaleEnds)) * 8) / 1000;
         var measureScale = "Kbps";
 
         //this means that I've 10^6 instead of 10^3 so from K-->M
-        if(end>10000){
+        if (end > 10000) {
 
-            quotient = 1000*1000;
-            end = end/1000;
+            quotient = 1000 * 1000;
+            end = end / 1000;
             measureScale = "Mbps";
         }
 
         svg.append("svg:text")
-           .attr("class" , "label")
-           .attr("x" , "-250")
-           .attr("y", "-50")
-           .attr("anchor" , "middle")
-           .attr("transform" , "rotate(-90)")
-           .text("Goodput ("+measureScale+")");
+            .attr("class", "label")
+            .attr("x", "-250")
+            .attr("y", "-50")
+            .attr("anchor", "middle")
+            .attr("transform", "rotate(-90)")
+            .text("Goodput ("+measureScale+")");
 
         yScale.domain([0, end]);
-        xScale.domain([format1(beginning), format1(ending)])
+        xScale.domain([format1(beginning), format1(ending)]);
 
 
         var xAxis = d3.svg.axis()
@@ -127,7 +125,7 @@ var speedtest=(function() {
             .attr("transform", "translate(0," + h + ")")
             .call(xAxis);
 
-        if (nest.length == 1) {
+        if (nest.length === 1) {
             yScale.domain([0, end * 2]);
             yAxis.scale(yScale)
         }
@@ -135,7 +133,7 @@ var speedtest=(function() {
         svg.append("g").attr("class", "axis")
             .call(yAxis);
 
-    }
+    };
 
     var addLines = function() {
         var xlines = svg.selectAll("line.y")
@@ -165,13 +163,13 @@ var speedtest=(function() {
 
     }
 
-    same.processJson = function(error, json) {
+    self.processJson = function(error, json) {
 
-            if (error!==null){
-                var errorMessage =[];
+            if (error !== null){
+                var errorMessage = [];
                 errorMessage.push(error.toString);
             };
-            if (beginning != "" && ending != "") {
+            if (beginning !== "" && ending !== "") {
                 var s = format1(beginning);
                 var e = format1(ending);
 
@@ -201,17 +199,17 @@ var speedtest=(function() {
 
     });
 
-    if (beginning == "" && ending == "") {
+    if (beginning === "" && ending === "") {
 
         s = d3.min(json, function(d) {
-            return d.date
+            return d.date;
         });
 
         beginning = s.getFullYear() + "-" + (s.getMonth() + 1) + "-" +
                     s.getDate() + " " + s.getHours();
 
         e = d3.max(json, function(d) {
-            return d.date
+            return d.date;
         })
         ending = e.getFullYear() + "-" + (e.getMonth() + 1) + "-" +
                 e.getDate() + " " + e.getHours();
@@ -219,7 +217,7 @@ var speedtest=(function() {
 
     nest = [];
 
-    if (index == 1) {
+    if (index === 1) {
         nest = d3.nest().key(function(d) {
             return d.d1
         }).rollup(function(leaves) {
@@ -239,7 +237,7 @@ var speedtest=(function() {
             }
         }).entries(json);
 
-    } else if (index == 2) {
+    } else if (index === 2) {
         nest = d3.nest().key(function(d) {
             return d.d2
         }).rollup(function(leaves) {
@@ -279,10 +277,10 @@ var speedtest=(function() {
         }).entries(json);
 
     }
-        if (nest.length == 0) {
-            var errorMsg="No data available from Speedtest for this timespan";
+        if (nest.length === 0) {
+            var errorMsg = "No data available from Speedtest for this timespan";
         errorUtilities.showErrors([errorMsg]);
-    }else{
+    } else {
             nest.sort(function(a, b) {
             return a.values.date - b.values.date;
     });
@@ -299,12 +297,12 @@ var speedtest=(function() {
         svg.selectAll("path").remove();
         svg.selectAll(".x").remove();
         svg.selectAll(".y").remove();
-    }
+    };
 
     var drawElements=function(){
         addAxes();
         addLines();
-        if (nest.length != 1) {
+        if (nest.length !== 1) {
             svg.append("svg:path").attr("d", lineU(nest))
                 .classed("upload", true);
             svg.append("svg:path").attr("d", lineD(nest))
@@ -312,23 +310,24 @@ var speedtest=(function() {
         }
         drawCircles("upload");
         drawCircles("download");
-    }
+    };
 
-    same.setBeginning=function(string){
+    self.setBeginning = function(string) {
         beginning = string;
-    }
+    };
 
-    same.setEnding=function(string){
+    self.setEnding = function(string) {
         ending = string;
     }
 
 
     //updates the index value and the view accordingly
-    same.setAggregationLevel = function(object) {
+    self.setAggregationLevel = function(object) {
         index = object.value;
         d3.json("data/data_speedtest_2.json", function(error,json){
-                                    speedtest.processJson(error,json)});
+                                    speedtest.processJson(error,json);
+                                    });
     };
-    return same;
+    return self;
 })();
 

@@ -47,34 +47,33 @@
             <div id="graphcontainer"></div>
         </div>
         <script type ="text/javascript">
-            var container = d3.select("#graphcontainer");
-            var graphareas = container.selectAll("div")
+        var container = d3.select("#graphcontainer");
+        var graphareas = container.selectAll("div")
                             .data(["1", "2", "3"]);
-            graphareas.enter().append("div")
-                              .attr("id" , function(d){return "grapharea-"+d})
-                              .attr("class" , "wbackground")
-                              .append("svg")
-                              .attr("width" , "700")
-                              .attr("height" , "500")
-                              .append("g")
-                              .attr("class" , function(d){return "refresh-"+d})
-                              .attr("transform" , "translate(100,80)");
+        graphareas.enter().append("div")
+                          .attr("id", function(d) {return "grapharea-" + d; })
+                          .attr("class", "wbackground")
+                          .append("svg")
+                          .attr("width", "700")
+                          .attr("height", "500")
+                          .append("g")
+                          .attr("class", function(d) {return "refresh-" + d; })
+                          .attr("transform", "translate(100,80)");
 
-        </script>
-        <script type="text/javascript">
-         $( "#startDate" ).datepicker({dateFormat:"yy-mm-dd"});
-         $("#endDate").datepicker({dateFormat: "yy-mm-dd"});
-            jQuery('#container').addClass('js');
-            jQuery("#tabs li").each(function() {
-                jQuery(this).click(function() {
-                    var tabId = jQuery(this).attr('id');
-                    var tabId = tabId.split('-');
-                    var tabContent = document.getElementById('grapharea-' +
+         jQuery("#startDate").datepicker({dateFormat:"yy-mm-dd"});
+         jQuery("#endDate").datepicker({dateFormat:"yy-mm-dd"});
+         jQuery('#container').addClass('js');
+
+         jQuery("#tabs li").each(function() {
+              jQuery(this).click(function() {
+                  var tabId = jQuery(this).attr('id');
+                  var tabId = tabId.split('-');
+                  var tabContent = document.getElementById('grapharea-' +
                      tabId[1]);
-                    tabContent.style.display = 'block';
-                    jQuery(this).addClass('selected');
-                    jQuery(this).siblings().removeClass('selected');
-                    jQuery(tabContent).siblings().css('display', 'none');
+                  tabContent.style.display = 'block';
+                  jQuery(this).addClass('selected');
+                  jQuery(this).siblings().removeClass('selected');
+                  jQuery(tabContent).siblings().css('display', 'none');
                 });
             });
         </script>
