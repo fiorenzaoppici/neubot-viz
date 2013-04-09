@@ -79,9 +79,9 @@ var speedtest=( function() {
                 return yScale((d.values.avgU * 8) / quotient);
             });
         }
-        //circles.on("click", function(d) {
-        //    worldmap.addPanel(d.values.date);
-        //})
+        circles.on("click", function(d) {
+            worldmap.addPanel(d.values.date);
+        })
         circles.exit().remove();
     };
 

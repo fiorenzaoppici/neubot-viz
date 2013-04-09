@@ -166,7 +166,7 @@ path.download {
  *  GEOGRAPHIC
  */
 
-/*#geobase{
+#geobase{
     width: 700px;
     height: 500px;
     position:absolute;
@@ -187,4 +187,3 @@ path.download {
 .countryPath_selected {
     fill: green;
 }
-*/
