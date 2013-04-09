@@ -36,7 +36,7 @@ var bittorrent= ( function() {
                 .range([0, w]);
     var yScale = d3.scale.linear().range([h, 0]);
 
-    var svg = d3.select(".refresh-2");
+    var svg = d3.select(".refresh-bittorrent");
 
    /*  index represents the current aggregation level
     *   it's updated via the select element in the html.
@@ -44,7 +44,7 @@ var bittorrent= ( function() {
     *   3: mm-YYYY
     *   1: dd-mm-YYYY HH
     */
-    var index = 2;
+    var index = "d";
 
     var quotient = 1000;
 
@@ -62,7 +62,7 @@ var bittorrent= ( function() {
         return yScale(d.values.avgU * 8 / quotient);
     });
 
-    //adds svg circle elements for every point
+    // adds svg circle elements for every point.
     // depending on "toggle" parameter it can represent
     // upload or download data.
     var drawCircles = function(toggle) {
@@ -85,7 +85,7 @@ var bittorrent= ( function() {
         circles.exit().remove();
     };
 
-    //add axes according to the current range of values
+    // adds axes according to the current range of values
     // and time
     var addAxes = function() {
         var scaleEnds = [d3.max(nest, function(d) {
@@ -140,7 +140,7 @@ var bittorrent= ( function() {
 
     }
 
-   //adds reference lines according to the aggregation level.
+   // adds reference lines according to the aggregation level.
    var addLines = function() {
         var xlines = svg.selectAll("line.y")
                             .data(yScale.ticks(10));
@@ -222,7 +222,7 @@ var bittorrent= ( function() {
 
                 nest = [];
 
-                if (index === 1) {
+                if (index === "h") {
                     nest = d3.nest().key(function(d) {
                         return d.d1;
                     }).rollup(function(leaves) {
@@ -242,7 +242,7 @@ var bittorrent= ( function() {
                         }
                     }).entries(json);
 
-                } else if (index === 2) {
+                } else if (index === "d") {
                     nest = d3.nest().key(function(d) {
                         return d.d2;
                     }).rollup(function(leaves) {
@@ -296,8 +296,8 @@ var bittorrent= ( function() {
         }
     };
 
-    //removes all variable graphic elements and
-    //calls again for data.
+    // removes all variable graphic elements and
+    // calls again for data.
     var refresh = function() {
         svg.selectAll(".upload").remove();
         svg.selectAll(".download").remove();
@@ -328,7 +328,7 @@ var bittorrent= ( function() {
         ending = string;
     };
 
-    //updates the index value and the view accordingly
+    // updates the index value and the view accordingly
     self.setAggregationLevel = function(object) {
         index = object.value;
         d3.json("data/data_bittorrent_2.json", function(error,json) {

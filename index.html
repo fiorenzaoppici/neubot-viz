@@ -7,9 +7,9 @@
          href="css/jquery-ui-1.10.1.custom.css">
         <link rel="stylesheet" type="text/css" href="style.css" />
         <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
-         <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="http://d3js.org/d3.v2.js?2.9.1"></script>
         <script src="js/d3.js"></script>
-
     </head>
     <body>
         <div id="wrapper">
@@ -22,8 +22,8 @@
                     <input id="endDate">
                     </input></span>
                 <select id="timebasis" class="selector">
-                <option value="2" selected> days <option value="1"> hours
-                <option value="3"> months
+                <option value="d" selected> days <option value="h"> hours
+                <option value="m"> months
                 </select>
                 <button>
                     Submit!
@@ -33,13 +33,13 @@
         <div id="containers">
             <div id="tabcontainer">
                 <ul id="tabs">
-                    <li id="tab-3">
+                    <li id="tab-rawtest">
                         Raw Test
                     </li>
-                    <li id="tab-2">
+                    <li id="tab-bittorrent">
                         Bittorrent
                     </li>
-                    <li id="tab-1"class="selected">
+                    <li id="tab-speedtest"class="selected">
                         Speedtest
                     </li>
                 </ul>
@@ -49,7 +49,7 @@
         <script type ="text/javascript">
         var container = d3.select("#graphcontainer");
         var graphareas = container.selectAll("div")
-                            .data(["1", "2", "3"]);
+                            .data(["speedtest", "bittorrent", "rawtest"]);
         graphareas.enter().append("div")
                           .attr("id", function(d) {return "grapharea-" + d; })
                           .attr("class", "wbackground")

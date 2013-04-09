@@ -1,10 +1,3 @@
-/*  Elementi base della pagina
- *  LOGO: logo di neubot
- *  WBACKGROUND: classe div contenuto
- *  GRAPHAREA: div che contiene il grafico
- *  WRAPPER: div esterno per l'allineamento
- *  PREV/NEXT: avanzatori di livello
- */
 
 body {
 	font-family: 'Lucida Grande',Verdana,Helvetica,Arial,sans-serif;
@@ -23,9 +16,9 @@ h3 {
 }
 
 
-#grapharea-1 ,
-#grapharea-2 ,
-#grapharea-3  
+#grapharea-speedtest ,
+#grapharea-bittorrent ,
+#grapharea-rawtest
 {
 	height: 500px;
 	margin-top:none;
@@ -33,8 +26,8 @@ h3 {
 	border: 2px solid #00B047;
 }
 
-#grapharea-2,
-#grapharea-3{
+#grapharea-rawtest,
+#grapharea-bittorrent{
 	display:none;
 }
 
@@ -128,16 +121,6 @@ select{
   shape-rendering: crispEdges;
 }
 
-
-
-/* gestione stile elementi svg
- * 
- * BACKGROUND: sfondo grafico
- * PATH: linea funzione
- * AXIS: assi cartesiani del grafico
- * UPLOAD/DOWNLOAD classe che contiene i differenti gruppi di traffico (cerchi +path)
- */
-
 .background {
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 15pt;
@@ -152,7 +135,7 @@ path {
 	fill: none;
 	stroke: #000;
 	shape-rendering: crispEdges;
-	
+
 }
 
 .axis text{
@@ -178,3 +161,30 @@ path.upload {
 path.download {
 	fill: none;
 }
+
+/*
+ *  GEOGRAPHIC
+ */
+
+/*#geobase{
+    width: 700px;
+    height: 500px;
+    position:absolute;
+    top: 25%;
+    left: 21%;
+    z-index: 2;
+    background: white;
+}
+.countryPath {
+  stroke: green;
+  stroke-width: 0.5px;
+}
+
+.countryPath_unselected{
+    fill:gray;
+}
+
+.countryPath_selected {
+    fill: green;
+}
+*/

@@ -33,7 +33,7 @@ var submit = d3.select("button");
 var startDate = d3.select("#startDate");
 var endDate = d3.select("#endDate");
 var selector = d3.select("#timebasis");
-var defaultab = d3.select("#tab-1");
+var defaultab = d3.select("#tab-speedtest");
 
 format2 = d3.time.format("%Y-%m-%d").parse;
 
@@ -132,7 +132,7 @@ d3.select("#timebasis").on("change", function() {
 submit.on("click", function() {
     var errorMessages = [];
 
-    //if both dates are correct
+    // if both dates are correct
     if (errorUtilities.checkStart() === null &&
             errorUtilities.checkEnd() === null) {
 
@@ -156,7 +156,7 @@ submit.on("click", function() {
             });
 
         } else {
-            //if the start date is after the end
+            // if the start date is after the end
             errorMessages.push("Start date must be smaller than end date.");
         }
     } else {

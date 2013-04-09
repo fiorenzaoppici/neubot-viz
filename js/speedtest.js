@@ -35,15 +35,15 @@ var speedtest=( function() {
                 .range([0, w]);
     var yScale = d3.scale.linear().range([h, 0]);
 
-    var svg = d3.select(".refresh-1");
+    var svg = d3.select(".refresh-speedtest");
 
-/*   index represents the current aggregation level
- *   it's updated via the select element in the html.
- *   2: dd-mm-YYYY
- *   3: mm-YYYY
- *   1: dd-mm-YYYY HH
-  */
-    var index = 2;
+    /*   index represents the current aggregation level
+     *   it's updated via the select element in the html.
+     *   2: dd-mm-YYYY
+     *   3: mm-YYYY
+     *   1: dd-mm-YYYY HH
+      */
+    var index = "d";
 
     var quotient = 1000;
 
@@ -79,6 +79,9 @@ var speedtest=( function() {
                 return yScale((d.values.avgU * 8) / quotient);
             });
         }
+        //circles.on("click", function(d) {
+        //    worldmap.addPanel(d.values.date);
+        //})
         circles.exit().remove();
     };
 
@@ -92,7 +95,7 @@ var speedtest=( function() {
         var end = ((d3.max(scaleEnds)) * 8) / 1000;
         var measureScale = "Kbps";
 
-        //this means that I've 10^6 instead of 10^3 so from K-->M
+        // this means that I've 10^6 instead of 10^3 so from K-->M
         if (end > 10000) {
 
             quotient = 1000 * 1000;
@@ -190,6 +193,7 @@ var speedtest=( function() {
 
         var d2 = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" +
                 date.getDate();
+
         var d3 = date.getFullYear() + "-" + (date.getMonth() + 1);
 
         d.date = format1(d1);
@@ -217,9 +221,9 @@ var speedtest=( function() {
 
     nest = [];
 
-    if (index === 1) {
+    if (index === "h") {
         nest = d3.nest().key(function(d) {
-            return d.d1
+            return d.d1;
         }).rollup(function(leaves) {
             return {
 
@@ -237,9 +241,9 @@ var speedtest=( function() {
             }
         }).entries(json);
 
-    } else if (index === 2) {
+    } else if (index === "d") {
         nest = d3.nest().key(function(d) {
-            return d.d2
+            return d.d2;
         }).rollup(function(leaves) {
             return {
 
@@ -259,7 +263,7 @@ var speedtest=( function() {
 
     } else {
         nest = d3.nest().key(function(d) {
-            return d.d3
+            return d.d3;
         }).rollup(function(leaves) {
             return {
                 "avgD" : d3.sum(leaves, function(d) {
@@ -299,7 +303,7 @@ var speedtest=( function() {
         svg.selectAll(".y").remove();
     };
 
-    var drawElements=function(){
+    var drawElements=function() {
         addAxes();
         addLines();
         if (nest.length !== 1) {
@@ -318,10 +322,8 @@ var speedtest=( function() {
 
     self.setEnding = function(string) {
         ending = string;
-    }
-
-
-    //updates the index value and the view accordingly
+    };
+    // updates the index value and the view accordingly
     self.setAggregationLevel = function(object) {
         index = object.value;
         d3.json("data/data_speedtest_2.json", function(error,json){
